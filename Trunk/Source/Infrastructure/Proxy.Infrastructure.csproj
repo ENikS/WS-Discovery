@@ -48,11 +48,12 @@
     <Compile Include="ContractNames.cs" />
     <Compile Include="Enums\LoggingCategory.cs" />
     <Compile Include="Enums\LoggingPriority.cs" />
-    <Compile Include="Enums\States.cs" />
     <Compile Include="Extensions\TaskExtensions.cs" />
-    <Compile Include="Generics\TEventArgs.cs" />
     <Compile Include="Interfaces\ILoggerFacade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Generics\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -61,13 +61,13 @@ namespace System.ServiceModel.Discovery
             // Create container
             _container = new CompositionContainer(catalog);
             if (_container == null)
-                throw new InvalidOperationException(Resources.NullCompositionContainerException);
+                throw new InvalidOperationException();
 
             // Compose this
             _container.ComposeParts(this);
 
             // Initialize modules and parts that implement Initialize contract
-            Parallel.Invoke(_container.GetExportedValues<Action>("Initialize").ToArray());
+            Parallel.Invoke(_container.GetExportedValues<Action>(ContractName.Initialize).ToArray());
         }
 
         #endregion

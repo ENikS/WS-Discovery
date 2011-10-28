@@ -13,6 +13,7 @@ using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition;
 using System.ServiceModel.Discovery.Logging;
 using System.Reactive.Subjects;
+using System.IO;
 
 namespace System.ServiceModel.Discovery
 {
@@ -88,9 +89,12 @@ namespace System.ServiceModel.Discovery
         {
             AggregateCatalog catalog = new AggregateCatalog();
 
+            // Load Add-in modules from the directory
+            if (Directory.Exists(ContractName.Modules)) 
+                catalog.Catalogs.Add(new DirectoryCatalog(ContractName.Modules));
+
+            // Add this assembly
             catalog.Catalogs.Add(new AssemblyCatalog(this.GetType().Assembly));
-            catalog.Catalogs.Add(new AssemblyCatalog("WS-Discovery.Proxy.dll"));
-            //catalog.Catalogs.Add(new DirectoryCatalog("Modules"));
 
             return catalog;
         }

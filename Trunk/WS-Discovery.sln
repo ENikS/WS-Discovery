@@ -7,9 +7,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proxy.Service", "Source\Pro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proxy.Service.Host", "Source\Proxy.Service.Host\Proxy.Service.Host.csproj", "{9F4055B9-002D-4FC5-A9C8-763FB5C4CFF3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{F43EB91B-8430-4052-8172-379ED15DD44D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proxy.ProbeModule", "Source\Proxy.ProbeModule\Proxy.ProbeModule.csproj", "{0EEB0C8B-8CB4-4809-9C5B-6066CDED2C48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proxy.ResolveModule", "Source\Proxy.ResolveModule\Proxy.ResolveModule.csproj", "{8CE9FBD5-9CCB-487F-B9DF-A912C68107CA}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 4
+		SccNumberOfProjects = 6
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs07
 		SccLocalPath0 = .
@@ -22,6 +28,14 @@ Global
 		SccProjectUniqueName3 = Source\\Proxy.Service.Host\\Proxy.Service.Host.csproj
 		SccProjectName3 = Source/Proxy.Service.Host
 		SccLocalPath3 = Source\\Proxy.Service.Host
+		SccProjectUniqueName4 = Source\\Proxy.ProbeModule\\Proxy.ProbeModule.csproj
+		SccProjectTopLevelParentUniqueName4 = WS-Discovery.sln
+		SccProjectName4 = Source/Proxy.ProbeModule
+		SccLocalPath4 = Source\\Proxy.ProbeModule
+		SccProjectUniqueName5 = Source\\Proxy.ResolveModule\\Proxy.ResolveModule.csproj
+		SccProjectTopLevelParentUniqueName5 = WS-Discovery.sln
+		SccProjectName5 = Source/Proxy.ResolveModule
+		SccLocalPath5 = Source\\Proxy.ResolveModule
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = WS-Discovery.vsmdi
@@ -65,8 +79,32 @@ Global
 		{9F4055B9-002D-4FC5-A9C8-763FB5C4CFF3}.Release|Mixed Platforms.Build.0 = Release|x86
 		{9F4055B9-002D-4FC5-A9C8-763FB5C4CFF3}.Release|x86.ActiveCfg = Release|x86
 		{9F4055B9-002D-4FC5-A9C8-763FB5C4CFF3}.Release|x86.Build.0 = Release|x86
+		{0EEB0C8B-8CB4-4809-9C5B-6066CDED2C48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EEB0C8B-8CB4-4809-9C5B-6066CDED2C48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EEB0C8B-8CB4-4809-9C5B-6066CDED2C48}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{0EEB0C8B-8CB4-4809-9C5B-6066CDED2C48}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{0EEB0C8B-8CB4-4809-9C5B-6066CDED2C48}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0EEB0C8B-8CB4-4809-9C5B-6066CDED2C48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EEB0C8B-8CB4-4809-9C5B-6066CDED2C48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EEB0C8B-8CB4-4809-9C5B-6066CDED2C48}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{0EEB0C8B-8CB4-4809-9C5B-6066CDED2C48}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{0EEB0C8B-8CB4-4809-9C5B-6066CDED2C48}.Release|x86.ActiveCfg = Release|Any CPU
+		{8CE9FBD5-9CCB-487F-B9DF-A912C68107CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CE9FBD5-9CCB-487F-B9DF-A912C68107CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CE9FBD5-9CCB-487F-B9DF-A912C68107CA}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{8CE9FBD5-9CCB-487F-B9DF-A912C68107CA}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{8CE9FBD5-9CCB-487F-B9DF-A912C68107CA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8CE9FBD5-9CCB-487F-B9DF-A912C68107CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CE9FBD5-9CCB-487F-B9DF-A912C68107CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CE9FBD5-9CCB-487F-B9DF-A912C68107CA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{8CE9FBD5-9CCB-487F-B9DF-A912C68107CA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{8CE9FBD5-9CCB-487F-B9DF-A912C68107CA}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0EEB0C8B-8CB4-4809-9C5B-6066CDED2C48} = {F43EB91B-8430-4052-8172-379ED15DD44D}
+		{8CE9FBD5-9CCB-487F-B9DF-A912C68107CA} = {F43EB91B-8430-4052-8172-379ED15DD44D}
 	EndGlobalSection
 EndGlobal

@@ -1,23 +1,13 @@
-﻿using System;
+﻿using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.ServiceModel;
-using System.ServiceModel.Description;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Xml;
 using System.ComponentModel.Composition;
-using System.Reactive.Concurrency;
-using System.Reactive.Subjects;
-using System.Collections.Concurrent;
-using System.Reactive.Linq;
+using System.Linq;
+using System.Threading.Tasks;
+
+#pragma warning disable 0649,0169
 
 namespace System.ServiceModel.Discovery
 {
-    using IServicesRepository = IProducerConsumerCollection<Tuple<DiscoveryMessageSequence, EndpointDiscoveryMetadata>>;
-    using System.Diagnostics.CodeAnalysis;
 
 
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple)]

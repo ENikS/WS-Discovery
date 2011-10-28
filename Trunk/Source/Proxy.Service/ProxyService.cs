@@ -1,0 +1,271 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.ServiceModel;
+using System.ServiceModel.Description;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Xml;
+using System.ComponentModel.Composition;
+using System.Reactive.Concurrency;
+using System.Reactive.Subjects;
+using System.Collections.Concurrent;
+using System.Reactive.Linq;
+
+namespace System.ServiceModel.Discovery
+{
+    using IServicesRepository = IProducerConsumerCollection<Tuple<DiscoveryMessageSequence, EndpointDiscoveryMetadata>>;
+    using System.Diagnostics.CodeAnalysis;
+
+
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple)]
+    public partial class ProxyService : DiscoveryProxy
+    {
+        #region Fields
+
+        /// <summary>
+        /// Collection of task factories for Online announcement. Upon receiving online announcement all of these tasks
+        /// are created by calling each factory and passing <see cref="DiscoveryMessageSequence"/> and 
+        /// <see cref="EndpointDiscoveryMetadata"/> to each factory. 
+        /// </summary>
+        [ImportMany(ContractName.OnlineAnnouncement, typeof(Func<DiscoveryMessageSequence, EndpointDiscoveryMetadata, Task>))]
+        private IEnumerable<Func<DiscoveryMessageSequence, EndpointDiscoveryMetadata, Task>> _onlineTaskFactories;
+
+        /// <summary>
+        /// Collection of task factories for Offline announcement. Upon receiving online announcement all of these tasks
+        /// are created by calling each factory and passing <see cref="DiscoveryMessageSequence"/> and 
+        /// <see cref="EndpointDiscoveryMetadata"/> to each factory. 
+        /// </summary>
+        [ImportMany(ContractName.OfflineAnnouncement, typeof(Func<DiscoveryMessageSequence, EndpointDiscoveryMetadata, Task>))]
+        private IEnumerable<Func<DiscoveryMessageSequence, EndpointDiscoveryMetadata, Task>> _offlineTaskFactories;
+
+        [Import(ContractName.Find, typeof(Func<FindRequestContext, Task>))]
+        private Func<FindRequestContext, Task> _findTaskFactory;
+
+        [Import(ContractName.Resolve, typeof(Func<ResolveCriteria, Task<EndpointDiscoveryMetadata>>))]
+        private Func<ResolveCriteria, Task<EndpointDiscoveryMetadata>> _resolveTaskFactory;
+
+        #endregion
+
+        #region OnlineAnnouncement
+
+        /// <summary>
+        /// Handles an online announcement message.
+        /// </summary>
+        /// <param name="messageSequence">The discovery message sequence.</param>
+        /// <param name="endpointDiscoveryMetadata">The endpoint discovery metadata.</param>
+        /// <param name="callback">The callback delegate to call when the operation is completed.</param>
+        /// <param name="state">The user-defined state data.</param>
+        /// <returns>A reference to the pending asynchronous operation.</returns>
+        protected override IAsyncResult OnBeginOnlineAnnouncement(DiscoveryMessageSequence messageSequence,
+                                                                  EndpointDiscoveryMetadata endpointDiscoveryMetadata,
+                                                                  AsyncCallback callback, object state)
+        {
+            var tcs = new TaskCompletionSource<object>(state);
+
+            // Start a background task that will process anounncement
+            Task.Factory.StartNew(() =>
+            {
+                // Create and executy all Online announcement tasks
+                var tasks = _onlineTaskFactories.AsParallel()
+                                                .Select((factory) => { return factory(messageSequence, endpointDiscoveryMetadata); })
+                                                .ToArray();
+                // TODO: Decide if we want to wait for completion of all tasks
+                // Task.WaitAll(tasks);
+                tcs.SetResult(null);
+                callback(tcs.Task);
+            });
+            
+            return tcs.Task;
+        }
+
+        /// <summary>
+        /// Handles the completion of an online announcement message.
+        /// </summary>
+        /// <param name="result">A reference to the completed asynchronous operation.</param>
+        protected override void OnEndOnlineAnnouncement(IAsyncResult result)
+        {
+            if (!result.IsCompleted)
+                result.AsyncWaitHandle.WaitOne();
+        }
+
+        #endregion
+
+        #region OfflineAnnouncement
+
+        /// <summary>
+        /// Handles an offline announcement message.
+        /// </summary>
+        /// <param name="messageSequence">The discovery message sequence.</param>
+        /// <param name="endpointDiscoveryMetadata">The endpoint discovery metadata.</param>
+        /// <param name="callback">The callback delegate to call when the operation is completed.</param>
+        /// <param name="state">The user-defined state data.</param>
+        /// <returns>A reference to the pending asynchronous operation.</returns>
+        protected override IAsyncResult OnBeginOfflineAnnouncement(DiscoveryMessageSequence messageSequence,
+                                                                   EndpointDiscoveryMetadata endpointDiscoveryMetadata,
+                                                                   AsyncCallback callback, object state)
+        {
+            var tcs = new TaskCompletionSource<object>(state);
+
+            // Start a background task that will process anounncement
+            Task.Factory.StartNew(() =>
+            {
+                // Create and executy all Online announcement tasks
+                var tasks = _offlineTaskFactories.AsParallel()
+                                                 .Select((factory) => { return factory(messageSequence, endpointDiscoveryMetadata); })
+                                                 .ToArray();
+                // TODO: Decide if we want to wait for completion of all tasks
+                // Task.WaitAll(tasks);
+                tcs.SetResult(null);
+                callback(tcs.Task);
+            });
+
+            return tcs.Task;
+        }
+
+        /// <summary>
+        /// Handles the completion of an offline announcement.
+        /// </summary>
+        /// <param name="result">A reference to the completed asynchronous operation.</param>
+        protected override void OnEndOfflineAnnouncement(IAsyncResult result)
+        {
+            if (!result.IsCompleted)
+                result.AsyncWaitHandle.WaitOne();
+        }
+
+        #endregion
+
+        #region Find
+
+        /// <summary>
+        /// Handles a find operation.
+        /// </summary>
+        /// <param name="findRequestContext">The find request context that describes the service to discover.</param>
+        /// <param name="callback">The callback delegate to call when the operation is completed.</param>
+        /// <param name="state">The user-defined state data.</param>
+        /// <returns>A reference to the pending asynchronous operation.</returns>
+        protected override IAsyncResult OnBeginFind(FindRequestContext findRequestContext, AsyncCallback callback, object state)
+        {
+            return _findTaskFactory(findRequestContext).ToApm(callback, state);
+        }
+
+        /// <summary>
+        /// Handles the completion of a find operation.
+        /// </summary>
+        /// <param name="result">A reference to the completed asynchronous operation.</param>
+        protected override void OnEndFind(IAsyncResult result)
+        {
+            if (!result.IsCompleted)
+                result.AsyncWaitHandle.WaitOne();
+        }
+
+        #endregion
+
+        #region Resolve
+
+        /// <summary>
+        /// Handles a resolve operation.
+        /// </summary>
+        /// <param name="resolveCriteria">The resolve criteria that describes the service to discover.</param>
+        /// <param name="callback">The callback delegate to call when the operation is completed.</param>
+        /// <param name="state">The user-defined state data.</param>
+        /// <returns>A reference to the pending asynchronous operation.</returns>
+        protected override IAsyncResult OnBeginResolve(ResolveCriteria resolveCriteria, AsyncCallback callback, object state)
+        {
+            return _resolveTaskFactory(resolveCriteria).ToApm(callback, state);
+        }
+
+        /// <summary>
+        /// Handles the completion of a resolve operation.
+        /// </summary>
+        /// <param name="result">A reference to the completed asynchronous operation.</param>
+        /// <returns>Endpoint discovery metadata for the resolved service.</returns>
+        protected override EndpointDiscoveryMetadata OnEndResolve(IAsyncResult result)
+        {
+            return ((Task<EndpointDiscoveryMetadata>)result).Result;
+        }
+
+        #endregion
+
+        #region ShouldRedirectFind
+
+        // Summary:
+        //     Override this method to allow the discovery proxy to send out multicast suppression
+        //     messages when it receives a multicast find request.
+        //
+        // Parameters:
+        //   resolveCriteria:
+        //     The resolve criteria that describes the service to find.
+        //
+        //   callback:
+        //     The callback delegate to call when the operation has completed.
+        //
+        //   state:
+        //     The user-defined state data.
+        //
+        // Returns:
+        //     A reference to the pending asynchronous operation.
+        //protected virtual IAsyncResult BeginShouldRedirectFind(FindCriteria resolveCriteria, AsyncCallback callback, object state);
+
+        //
+        // Summary:
+        //     Override this method to handle the completion of sending the multicast suppression
+        //     message for find requests.
+        //
+        // Parameters:
+        //   result:
+        //     A reference to the completed asynchronous operation.
+        //
+        //   redirectionEndpoints:
+        //     A collection of endpoint discovery metadata that describes the redirection
+        //     endpoints.
+        //
+        // Returns:
+        //     true if the find operation should be redirected, otherwise false.
+        //protected virtual bool EndShouldRedirectFind(IAsyncResult result, out Collection<EndpointDiscoveryMetadata> redirectionEndpoints);
+
+        #endregion
+
+        #region ShouldRedirectResolve
+
+        //
+        // Summary:
+        //     Override this method to allow the discovery proxy to send out multicast suppression
+        //     messages when it receives a multicast resolve request.
+        //
+        // Parameters:
+        //   findCriteria:
+        //     The find criteria that describes the service to find.
+        //
+        //   callback:
+        //     The callback delegate to call when the operation is completed.
+        //
+        //   state:
+        //     The user-defined state data.
+        //
+        // Returns:
+        //     A reference to the pending asynchronous operation.
+        //protected virtual IAsyncResult BeginShouldRedirectResolve(ResolveCriteria findCriteria, AsyncCallback callback, object state);
+
+        //
+        // Summary:
+        //     Override this method to handle the completion of sending the multicast suppression
+        //     message for resolve requests.
+        //
+        // Parameters:
+        //   result:
+        //     A reference to the completed asynchronous operation.
+        //
+        //   redirectionEndpoints:
+        //     A collection of endpoint discovery metadata that describes the redirection
+        //     endpoints.
+        //
+        // Returns:
+        //     true if the resolve operation should be redirected, otherwise false.
+        //protected virtual bool EndShouldRedirectResolve(IAsyncResult result, out Collection<EndpointDiscoveryMetadata> redirectionEndpoints);
+        
+        #endregion
+    }
+}

@@ -3,15 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proxy.Infrastructure", "Source\Infrastructure\Proxy.Infrastructure.csproj", "{37F8ADA9-1888-4D09-84B3-95A2E028A7B8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proxy.Service", "Source\Proxy.Service\Proxy.Service.csproj", "{9608CD07-99C3-44DB-A109-981A10EBB751}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 2
+		SccNumberOfProjects = 3
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs07
 		SccLocalPath0 = .
 		SccProjectUniqueName1 = Source\\Infrastructure\\Proxy.Infrastructure.csproj
 		SccProjectName1 = Source/Infrastructure
 		SccLocalPath1 = Source\\Infrastructure
+		SccProjectUniqueName2 = Source\\Proxy.Service\\Proxy.Service.csproj
+		SccProjectName2 = Source/Proxy.Service
+		SccLocalPath2 = Source\\Proxy.Service
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = WS-Discovery.vsmdi
@@ -25,6 +30,10 @@ Global
 		{37F8ADA9-1888-4D09-84B3-95A2E028A7B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37F8ADA9-1888-4D09-84B3-95A2E028A7B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37F8ADA9-1888-4D09-84B3-95A2E028A7B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9608CD07-99C3-44DB-A109-981A10EBB751}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9608CD07-99C3-44DB-A109-981A10EBB751}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9608CD07-99C3-44DB-A109-981A10EBB751}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9608CD07-99C3-44DB-A109-981A10EBB751}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

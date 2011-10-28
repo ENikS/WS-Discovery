@@ -1,0 +1,108 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.ServiceModel;
+using System.ServiceModel.Description;
+using System.ServiceModel.Discovery;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Xml;
+using System.ComponentModel.Composition.Hosting;
+using System.ComponentModel.Composition;
+using System.ServiceModel.Discovery.Logging;
+using System.Reactive.Subjects;
+
+namespace System.ServiceModel.Discovery
+{
+    /// <summary>
+    /// The purpose of this part is to initialize MEF container,
+    /// initialize all modules which implement Initialize contract and 
+    /// satisfy all imports.
+    /// </summary>
+    [Export(typeof(ProxyService))]
+    public partial class ProxyService : DiscoveryProxy
+    {
+        //-----------------------------------------------------
+        //  Infrastructure Fields
+        //-----------------------------------------------------
+
+        #region Fields
+
+        /// <summary>
+        /// Gets or sets the default <see cref="CompositionContainer"/> for the application.
+        /// </summary>
+        /// <value>The default <see cref="CompositionContainer"/> instance.</value>
+        private CompositionContainer _container;
+
+
+        #endregion
+
+        //-----------------------------------------------------
+        //  Constructor
+        //-----------------------------------------------------
+
+        #region Constructors
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public ProxyService()
+            : base()
+        {
+            // Create and configure catalog
+            AggregateCatalog catalog = ConfigureAggregateCatalog();
+
+            // Register defaults if not yet registered by modules
+            RegisterDefaultTypesIfMissing();
+
+            
+            // Create container
+            _container = new CompositionContainer(catalog);
+            if (_container == null)
+                throw new InvalidOperationException(Resources.NullCompositionContainerException);
+
+            // Compose this
+            _container.ComposeParts(this);
+
+            // Initialize modules and parts that implement Initialize contract
+            Parallel.Invoke(_container.GetExportedValues<Action>("Initialize").ToArray());
+        }
+
+        #endregion
+
+        //-----------------------------------------------------
+        //  Initialization
+        //-----------------------------------------------------
+
+        #region Initialization
+
+        /// <summary>
+        /// Configures the <see cref="AggregateCatalog"/> used by MEF.
+        /// </summary>
+        /// <remarks>
+        /// The base implementation does nothing.
+        /// </remarks>
+        protected virtual AggregateCatalog ConfigureAggregateCatalog()
+        {
+            AggregateCatalog catalog = new AggregateCatalog();
+
+            catalog.Catalogs.Add(new AssemblyCatalog(this.GetType().Assembly));
+            catalog.Catalogs.Add(new AssemblyCatalog("WS-Discovery.Proxy.dll"));
+            //catalog.Catalogs.Add(new DirectoryCatalog("Modules"));
+
+            return catalog;
+        }
+
+        /// <summary>
+        /// Helper method for configuring the <see cref="CompositionContainer"/>. 
+        /// Registers defaults for all the types necessary for Prism to work, if they are not already registered.
+        /// </summary>
+        public virtual void RegisterDefaultTypesIfMissing()
+        {
+        }
+
+        #endregion
+    }
+}

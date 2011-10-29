@@ -66,9 +66,6 @@ namespace System.ServiceModel.Discovery
 
             // Compose this
             _container.ComposeParts(this);
-
-            // Initialize modules and parts that implement Initialize contract
-            Parallel.Invoke(_container.GetExportedValues<Action>(ContractName.Initialize).ToArray());
         }
 
         #endregion

@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 
 namespace System.ServiceModel.Discovery
 {
-
-
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple)]
     public partial class ProxyService : DiscoveryProxy
     {
+        //-----------------------------------------------------
+        //  Fields
+        //-----------------------------------------------------
+
         #region Fields
 
         /// <summary>
@@ -38,6 +40,10 @@ namespace System.ServiceModel.Discovery
         private Func<ResolveCriteria, Task<EndpointDiscoveryMetadata>> _resolveTaskFactory;
 
         #endregion
+
+        //-----------------------------------------------------
+        //  Online Announcements
+        //-----------------------------------------------------
 
         #region OnlineAnnouncement
 
@@ -83,6 +89,10 @@ namespace System.ServiceModel.Discovery
 
         #endregion
 
+        //-----------------------------------------------------
+        //  Offline Announcements
+        //-----------------------------------------------------
+
         #region OfflineAnnouncement
 
         /// <summary>
@@ -127,6 +137,10 @@ namespace System.ServiceModel.Discovery
 
         #endregion
 
+        //-----------------------------------------------------
+        //  Probe
+        //-----------------------------------------------------
+
         #region Find
 
         /// <summary>
@@ -153,6 +167,10 @@ namespace System.ServiceModel.Discovery
 
         #endregion
 
+        //-----------------------------------------------------
+        //  Resolve
+        //-----------------------------------------------------
+
         #region Resolve
 
         /// <summary>
@@ -178,6 +196,10 @@ namespace System.ServiceModel.Discovery
         }
 
         #endregion
+
+        //-----------------------------------------------------
+        //  Redirect Adhoc to Managed Probe
+        //-----------------------------------------------------
 
         #region ShouldRedirectFind
 
@@ -217,6 +239,10 @@ namespace System.ServiceModel.Discovery
         //protected virtual bool EndShouldRedirectFind(IAsyncResult result, out Collection<EndpointDiscoveryMetadata> redirectionEndpoints);
 
         #endregion
+
+        //-----------------------------------------------------
+        //  Redirect Adhoc to Managed Resolve
+        //-----------------------------------------------------
 
         #region ShouldRedirectResolve
 

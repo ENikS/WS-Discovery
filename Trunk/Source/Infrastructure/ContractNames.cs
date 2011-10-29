@@ -9,7 +9,6 @@ namespace System.ServiceModel.Discovery
     public static class ContractName
     {
         public const string Modules = "Modules";                                         // Modules directory name
-        public const string Initialize = "Initialize";                                   // typeof(Action)
         
         public const string OnlineAnnouncement = "OnlineAnnouncementContract";           // typeof(Func<DiscoveryMessageSequence, EndpointDiscoveryMetadata, Task>)
         public const string OfflineAnnouncement = "OfflineAnnouncementContract";         // typeof(Func<DiscoveryMessageSequence, EndpointDiscoveryMetadata, Task>)

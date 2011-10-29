@@ -7,8 +7,31 @@ namespace System.Threading.Tasks
 {
     public static class TaskExtensions
     {
-        #region Extensions
+        #region Task To Asynchronous Programming Model pattern
 
+        /// <summary>
+        /// Implements the APM pattern with Tasks.
+        /// Usage:
+        /// 
+        ///     static Task FooAsync();
+        /// 
+        /// Is wrapped into an APM implementation:
+        /// 
+        /// static IAsyncResult BeginFoo(AsyncCallback callback, object state)
+        /// {
+        ///     return FooAsync().ToApm(callback, state);
+        /// }
+        /// 
+        /// static int EndFoo(IAsyncResult asyncResult)
+        /// {
+        ///     if (!result.IsCompleted)
+        ///         result.AsyncWaitHandle.WaitOne();
+        /// }
+        /// </summary>
+        /// <param name="task"><see cref="Task"/></param>
+        /// <param name="callback">Callback delegate.</param>
+        /// <param name="state">AsyncState object</param>
+        /// <returns></returns>
         public static Task ToApm(this Task task, AsyncCallback callback, object state)
         {
             if (task.AsyncState == state)
@@ -20,7 +43,6 @@ namespace System.Threading.Tasks
                 }
                 return task;
             }
-
 
             var tcs = new TaskCompletionSource<object>(state);
             task.ContinueWith(delegate
@@ -35,6 +57,29 @@ namespace System.Threading.Tasks
             return tcs.Task;
         }
 
+        /// <summary>
+        /// Implements the APM pattern with Tasks<TResult>.
+        /// Usage:
+        /// 
+        ///     static Task<int> FooAsync();
+        /// 
+        /// Is wrapped into an APM implementation:
+        /// 
+        /// static IAsyncResult BeginFoo(AsyncCallback callback, object state)
+        /// {
+        ///     return FooAsync().ToApm(callback, state);
+        /// }
+        /// 
+        /// static int EndFoo(IAsyncResult asyncResult)
+        /// {
+        ///     return ((Task<int>)asyncResult).Result; 
+        /// }
+        /// </summary>
+        /// <typeparam name="TResult">Type of return value</typeparam>
+        /// <param name="task"><see cref="Tasks<TResult>"/></param>
+        /// <param name="callback">Callback delegate.</param>
+        /// <param name="state">AsyncState object</param>
+        /// <returns></returns>
         public static Task<TResult> ToApm<TResult>(this Task<TResult> task, AsyncCallback callback, object state)
         {
             if (task.AsyncState == state)

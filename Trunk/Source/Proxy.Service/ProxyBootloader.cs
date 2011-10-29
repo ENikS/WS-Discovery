@@ -57,7 +57,6 @@ namespace System.ServiceModel.Discovery
 
             // Register defaults if not yet registered by modules
             RegisterDefaultTypesIfMissing();
-
             
             // Create container
             _container = new CompositionContainer(catalog);

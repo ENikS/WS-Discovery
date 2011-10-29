@@ -6,7 +6,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C0A0973A-982A-4D76-B6FB-E7F45AD5E9C3}</ProjectGuid>
+    <ProjectGuid>{42A665E1-3ECD-4476-AD13-2EEC06992348}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>UnitTests</RootNamespace>

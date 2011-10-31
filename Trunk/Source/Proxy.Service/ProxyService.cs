@@ -23,7 +23,7 @@ namespace System.ServiceModel.Discovery
         /// <see cref="EndpointDiscoveryMetadata"/> to each factory. 
         /// </summary>
         [ImportMany(ContractName.OnlineAnnouncement)]
-        private IEnumerable<Func<DiscoveryMessageSequence[], EndpointDiscoveryMetadata[], Task>> _onlineTaskFactories;
+        private IEnumerable<IAnounceOnlineTaskFactory> _onlineTaskFactories;
 
         /// <summary>
         /// Collection of task factories for Offline announcement. Upon receiving online announcement all of these tasks
@@ -31,13 +31,13 @@ namespace System.ServiceModel.Discovery
         /// <see cref="EndpointDiscoveryMetadata"/> to each factory. 
         /// </summary>
         [ImportMany(ContractName.OfflineAnnouncement)]
-        private IEnumerable<Func<DiscoveryMessageSequence[], EndpointDiscoveryMetadata[], Task>> _offlineTaskFactories;
+        private IEnumerable<IAnounceOfflineTaskFactory> _offlineTaskFactories;
 
-        [Import(ContractName.Find, typeof(Func<FindRequestContext, Task>))]
-        private Func<FindRequestContext, Task> _findTaskFactory;
+        [Import(ContractName.Find)]
+        private IFindTaskFactory _findTaskFactory;
 
-        [Import(ContractName.Resolve, typeof(Func<ResolveCriteria, Task<EndpointDiscoveryMetadata>>))]
-        private Func<ResolveCriteria, Task<EndpointDiscoveryMetadata>> _resolveTaskFactory;
+        [Import(ContractName.Resolve)]
+        private IResolveTaskFactory _resolveTaskFactory;
 
         #endregion
 
@@ -66,8 +66,8 @@ namespace System.ServiceModel.Discovery
             {
                 // Create and executy all Online announcement tasks
                 var tasks = _onlineTaskFactories.AsParallel()
-                                                .Select((factory) => { return factory(new DiscoveryMessageSequence[]{ messageSequence }, 
-                                                                                      new EndpointDiscoveryMetadata[]{ endpointDiscoveryMetadata }); })
+                                                .Select((factory) => { return factory.Create(new DiscoveryMessageSequence[]{ messageSequence }, 
+                                                                                             new EndpointDiscoveryMetadata[]{ endpointDiscoveryMetadata }); })
                                                 .ToArray();
                 // TODO: Decide if we want to wait for completion of all tasks
                 // Task.WaitAll(tasks);
@@ -115,8 +115,8 @@ namespace System.ServiceModel.Discovery
             {
                 // Create and executy all Online announcement tasks
                 var tasks = _offlineTaskFactories.AsParallel()
-                                                 .Select((factory) => { return factory(new DiscoveryMessageSequence[]{ messageSequence }, 
-                                                                                       new EndpointDiscoveryMetadata[]{ endpointDiscoveryMetadata }); })
+                                                 .Select((factory) => { return factory.Create(new DiscoveryMessageSequence[]{ messageSequence }, 
+                                                                                              new EndpointDiscoveryMetadata[]{ endpointDiscoveryMetadata }); })
                                                  .ToArray();
                 // TODO: Decide if we want to wait for completion of all tasks
                 // Task.WaitAll(tasks);
@@ -154,7 +154,7 @@ namespace System.ServiceModel.Discovery
         /// <returns>A reference to the pending asynchronous operation.</returns>
         protected override IAsyncResult OnBeginFind(FindRequestContext findRequestContext, AsyncCallback callback, object state)
         {
-            return _findTaskFactory(findRequestContext).ToApm(callback, state);
+            return _findTaskFactory.Create(findRequestContext).ToApm(callback, state);
         }
 
         /// <summary>
@@ -184,7 +184,7 @@ namespace System.ServiceModel.Discovery
         /// <returns>A reference to the pending asynchronous operation.</returns>
         protected override IAsyncResult OnBeginResolve(ResolveCriteria resolveCriteria, AsyncCallback callback, object state)
         {
-            return _resolveTaskFactory(resolveCriteria).ToApm(callback, state);
+            return _resolveTaskFactory.Create(resolveCriteria).ToApm(callback, state);
         }
 
         /// <summary>

@@ -39,6 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceModel.Discovery" />
     <Reference Include="System.Xml.Linq" />
@@ -52,8 +53,12 @@
     <Compile Include="Enums\LoggingCategory.cs" />
     <Compile Include="Enums\LoggingPriority.cs" />
     <Compile Include="Extensions\TaskExtensions.cs" />
+    <Compile Include="Interfaces\IAnounceTaskFactories.cs" />
+    <Compile Include="Interfaces\IFindTaskFactory.cs" />
     <Compile Include="Interfaces\ILoggerFacade.cs" />
+    <Compile Include="Interfaces\IResolveTaskFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Types\AnnouncementsBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Generics\" />

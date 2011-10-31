@@ -54,7 +54,7 @@
     <Compile Include="Enums\LoggingPriority.cs" />
     <Compile Include="Extensions\TaskExtensions.cs" />
     <Compile Include="Interfaces\IAnounceTaskFactories.cs" />
-    <Compile Include="Interfaces\IFindTaskFactory.cs" />
+    <Compile Include="Interfaces\IProbeTaskFactory.cs" />
     <Compile Include="Interfaces\ILoggerFacade.cs" />
     <Compile Include="Interfaces\IResolveTaskFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

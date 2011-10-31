@@ -8,8 +8,17 @@ namespace Proxy.ProbeModule
 {
     [Export]
     [PartCreationPolicy(CreationPolicy.Shared)]
-    public class ContractsRepository : AnnouncementsBase, IFindTaskFactory
+    public class ContractsRepository : AnnouncementsBase, IProbeTaskFactory
     {
+        //-----------------------------------------------------
+        //  Fields
+        //-----------------------------------------------------
+
+        #region Fields
+
+
+        #endregion
+
         //-----------------------------------------------------
         //  Methods
         //-----------------------------------------------------
@@ -30,7 +39,7 @@ namespace Proxy.ProbeModule
         /// </summary>
         /// <param name="findRequestContext">Criteria for finding correct endpoints</param>
         /// <returns>Returns <see cref="Task"/> object which encapsulates request handler</returns>
-        Task IFindTaskFactory.Create(FindRequestContext findRequestContext)
+        Task IProbeTaskFactory.Create(FindRequestContext findRequestContext)
         {
             return Task.Factory.StartNew(() => Debug.WriteLine("FindTaskFactory"));
         }

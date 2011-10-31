@@ -34,7 +34,7 @@ namespace System.ServiceModel.Discovery
         private IEnumerable<IAnounceOfflineTaskFactory> _offlineTaskFactories;
 
         [Import(ContractName.Find)]
-        private IFindTaskFactory _findTaskFactory;
+        private IProbeTaskFactory _findTaskFactory;
 
         [Import(ContractName.Resolve)]
         private IResolveTaskFactory _resolveTaskFactory;

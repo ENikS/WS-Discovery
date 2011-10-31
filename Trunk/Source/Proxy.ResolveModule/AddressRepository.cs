@@ -11,6 +11,15 @@ namespace Proxy.ResolveModule
     public class AddressRepository : AnnouncementsBase, IResolveTaskFactory
     {
         //-----------------------------------------------------
+        //  Fields
+        //-----------------------------------------------------
+
+        #region Fields
+
+
+        #endregion
+
+        //-----------------------------------------------------
         //  Methods
         //-----------------------------------------------------
 

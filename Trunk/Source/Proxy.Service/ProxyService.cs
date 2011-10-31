@@ -22,16 +22,16 @@ namespace System.ServiceModel.Discovery
         /// are created by calling each factory and passing <see cref="DiscoveryMessageSequence"/> and 
         /// <see cref="EndpointDiscoveryMetadata"/> to each factory. 
         /// </summary>
-        [ImportMany(ContractName.OnlineAnnouncement, typeof(Func<DiscoveryMessageSequence, EndpointDiscoveryMetadata, Task>))]
-        private IEnumerable<Func<DiscoveryMessageSequence, EndpointDiscoveryMetadata, Task>> _onlineTaskFactories;
+        [ImportMany(ContractName.OnlineAnnouncement)]
+        private IEnumerable<Func<DiscoveryMessageSequence[], EndpointDiscoveryMetadata[], Task>> _onlineTaskFactories;
 
         /// <summary>
         /// Collection of task factories for Offline announcement. Upon receiving online announcement all of these tasks
         /// are created by calling each factory and passing <see cref="DiscoveryMessageSequence"/> and 
         /// <see cref="EndpointDiscoveryMetadata"/> to each factory. 
         /// </summary>
-        [ImportMany(ContractName.OfflineAnnouncement, typeof(Func<DiscoveryMessageSequence, EndpointDiscoveryMetadata, Task>))]
-        private IEnumerable<Func<DiscoveryMessageSequence, EndpointDiscoveryMetadata, Task>> _offlineTaskFactories;
+        [ImportMany(ContractName.OfflineAnnouncement)]
+        private IEnumerable<Func<DiscoveryMessageSequence[], EndpointDiscoveryMetadata[], Task>> _offlineTaskFactories;
 
         [Import(ContractName.Find, typeof(Func<FindRequestContext, Task>))]
         private Func<FindRequestContext, Task> _findTaskFactory;
@@ -66,7 +66,8 @@ namespace System.ServiceModel.Discovery
             {
                 // Create and executy all Online announcement tasks
                 var tasks = _onlineTaskFactories.AsParallel()
-                                                .Select((factory) => { return factory(messageSequence, endpointDiscoveryMetadata); })
+                                                .Select((factory) => { return factory(new DiscoveryMessageSequence[]{ messageSequence }, 
+                                                                                      new EndpointDiscoveryMetadata[]{ endpointDiscoveryMetadata }); })
                                                 .ToArray();
                 // TODO: Decide if we want to wait for completion of all tasks
                 // Task.WaitAll(tasks);
@@ -114,7 +115,8 @@ namespace System.ServiceModel.Discovery
             {
                 // Create and executy all Online announcement tasks
                 var tasks = _offlineTaskFactories.AsParallel()
-                                                 .Select((factory) => { return factory(messageSequence, endpointDiscoveryMetadata); })
+                                                 .Select((factory) => { return factory(new DiscoveryMessageSequence[]{ messageSequence }, 
+                                                                                       new EndpointDiscoveryMetadata[]{ endpointDiscoveryMetadata }); })
                                                  .ToArray();
                 // TODO: Decide if we want to wait for completion of all tasks
                 // Task.WaitAll(tasks);

@@ -31,8 +31,8 @@ namespace Proxy.ResolveModule
         /// <param name="messageSequence"><see cref="DiscoveryMessageSequence"/> header info</param>
         /// <param name="endpointDiscoveryMetadata"><see cref="EndpointDiscoveryMetadata"/> information</param>
         /// <returns><see cref="Task"/> object encapsulating message handler</returns>
-        [Export(ContractName.OnlineAnnouncement, typeof(Func<DiscoveryMessageSequence, EndpointDiscoveryMetadata, Task>))]
-        public Task OnlineAnnouncementTaskFactory(DiscoveryMessageSequence messageSequence, EndpointDiscoveryMetadata endpointDiscoveryMetadata)
+        [Export(ContractName.OnlineAnnouncement)]
+        public Task OnlineAnnouncementTaskFactory(DiscoveryMessageSequence[] messageSequence, EndpointDiscoveryMetadata[] endpointDiscoveryMetadata)
         {
             return Task.Factory.StartNew(() => Debug.WriteLine("AnnounceOnline task."));
         }
@@ -43,8 +43,8 @@ namespace Proxy.ResolveModule
         /// <param name="messageSequence"><see cref="DiscoveryMessageSequence"/> header info</param>
         /// <param name="endpointDiscoveryMetadata"><see cref="EndpointDiscoveryMetadata"/> information</param>
         /// <returns><see cref="Task"/> object encapsulating message handler</returns>
-        [Export(ContractName.OfflineAnnouncement, typeof(Func<DiscoveryMessageSequence, EndpointDiscoveryMetadata, Task>))]
-        public Task OfflineAnnouncementTaskFactory(DiscoveryMessageSequence messageSequence, EndpointDiscoveryMetadata endpointDiscoveryMetadata)
+        [Export(ContractName.OfflineAnnouncement)]
+        public Task OfflineAnnouncementTaskFactory(DiscoveryMessageSequence[] messageSequence, EndpointDiscoveryMetadata[] endpointDiscoveryMetadata)
         {
             return Task.Factory.StartNew(() => Debug.WriteLine("AnnounceOffline task."));
         }

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Messages>
+<Announcements>
     <s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope" xmlns:a="http://www.w3.org/2005/08/addressing">
         <s:Header>
             <a:Action s:mustUnderstand="1">http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01/Hello</a:Action>
@@ -18,4 +18,22 @@
             </Hello>
         </s:Body>
     </s:Envelope>
-</Messages>
+    <s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope" xmlns:a="http://www.w3.org/2005/08/addressing">
+        <s:Header>
+            <a:Action s:mustUnderstand="1">http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01/Hello</a:Action>
+            <h:AppSequence InstanceId="1320094295" MessageNumber="1" xmlns:h="http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01"></h:AppSequence>
+            <a:MessageID>urn:uuid:a8e8a6d4-3f38-46c8-a607-34e3d2e4783d</a:MessageID>
+            <a:To s:mustUnderstand="1">urn:docs-oasis-open-org:ws-dd:ns:discovery:2009:01</a:To>
+        </s:Header>
+        <s:Body>
+            <Hello xmlns="http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01">
+                <a:EndpointReference>
+                    <a:Address>net.tcp://localhost:8001/Probe</a:Address>
+                </a:EndpointReference>
+                <d:Types xmlns:d="http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01">d:DiscoveryProxy</d:Types>
+                <XAddrs>net.tcp://localhost:8001/Probe</XAddrs>
+                <MetadataVersion>0</MetadataVersion>
+            </Hello>
+        </s:Body>
+    </s:Envelope>
+</Announcements>

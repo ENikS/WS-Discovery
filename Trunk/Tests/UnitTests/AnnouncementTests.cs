@@ -2,6 +2,7 @@
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel.Channels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.ComponentModel.Composition.Hosting;
 using System.IO;
@@ -11,6 +12,8 @@ using System.Xml.Serialization;
 using System.Diagnostics;
 using System.Runtime.Serialization;
 using System.Xml;
+using System.Xml.Linq;
+using System.Reflection;
 
 namespace UnitTests
 {
@@ -22,7 +25,9 @@ namespace UnitTests
     {
         private static CompositionContainer _container;
 
-        
+        private static List<Tuple<DiscoveryMessageSequence, EndpointDiscoveryMetadata>> _hello;
+
+        private static List<Tuple<DiscoveryMessageSequence, EndpointDiscoveryMetadata>> _bye;
 
         private TestContext testContextInstance;
 
@@ -64,6 +69,13 @@ namespace UnitTests
             _container = new CompositionContainer(catalog);
             if (_container == null)
                 throw new InvalidOperationException();
+
+            // Load messages from file
+            _hello = new List<Tuple<DiscoveryMessageSequence, EndpointDiscoveryMetadata>>();
+            LoadMessages(_hello, Directory.GetParent(typeof(ContractsRepositoryTest).Assembly.Location) + "\\..\\..\\Tests\\UnitTests\\AnouncementsTestHello.xml");
+
+            _bye = new List<Tuple<DiscoveryMessageSequence, EndpointDiscoveryMetadata>>();
+            LoadMessages(_bye, Directory.GetParent(typeof(ContractsRepositoryTest).Assembly.Location) + "\\..\\..\\Tests\\UnitTests\\AnouncementsTestBye.xml");
         }
 
         //Use ClassCleanup to run code after all tests in a class have run
@@ -84,6 +96,36 @@ namespace UnitTests
         //{
         //}
         //
+        #endregion
+
+        //-----------------------------------------------------
+        //  Helper Methods
+        //-----------------------------------------------------
+
+        #region Helper Methods
+
+        private static void LoadMessages(List<Tuple<DiscoveryMessageSequence, EndpointDiscoveryMetadata>> list, string path)
+        {
+            MethodInfo loadSequence = typeof(DiscoveryMessageSequence).GetMethods(BindingFlags.Instance | BindingFlags.NonPublic).First((x) => "ReadFrom" == x.Name);
+            MethodInfo loadEndpoint = typeof(EndpointDiscoveryMetadata).GetMethods(BindingFlags.Instance | BindingFlags.NonPublic).First((x) => "ReadFrom" == x.Name);
+            DiscoveryMessageSequenceGenerator gen = new DiscoveryMessageSequenceGenerator();
+
+            using (XmlReader reader = XmlReader.Create(path))
+            {
+                while (reader.ReadToFollowing("Envelope", "http://www.w3.org/2003/05/soap-envelope"))
+                {
+                    using (Message msg = Message.CreateMessage(reader, Int16.MaxValue, MessageVersion.Soap12))
+                    {
+                        EndpointDiscoveryMetadata data = new EndpointDiscoveryMetadata();
+
+                        loadEndpoint.Invoke(data, new object[] { DiscoveryVersion.WSDiscovery11, msg.GetReaderAtBodyContents() });
+
+                        list.Add(new Tuple<DiscoveryMessageSequence, EndpointDiscoveryMetadata>(gen.Next(), data));
+                    }
+                }
+            }
+        }
+        
         #endregion
 
         /// <summary>
@@ -156,51 +198,70 @@ namespace UnitTests
         [TestMethod()]
         public void AnnounceOnlineTests()
         {
-            EndpointDiscoveryMetadata endpoint = new EndpointDiscoveryMetadata();
+            Assert.IsNotNull(_hello);
 
-            var dd = Directory.GetParent(typeof(ContractsRepositoryTest).Assembly.Location) + "\\..\\..\\Tests\\UnitTests\\AnouncementsTestData.xml";
+            IEnumerable<IAnounceOnlineTaskFactory> factories = _container.GetExportedValues<IAnounceOnlineTaskFactory>(ContractName.OnlineAnnouncement);
+            Assert.IsNotNull(factories);
 
-            try
+            foreach (var item in _hello)
             {
-                //WriteObject(Directory.GetParent(typeof(ContractsRepositoryTest).Assembly.Location) + "test.xml", new object());
+                foreach (var factory in factories)
+                    factory.Create(new DiscoveryMessageSequence[] { item.Item1 }, new EndpointDiscoveryMetadata[] { item.Item2 });
             }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e);
-                throw;
-            }
-
-            Debug.WriteLine("");
         }
 
-        //public static void WriteObject(string fileName, object data)
-        //{
-        //    FileStream fs = new FileStream(fileName, FileMode.Create);
-        //    XmlDictionaryWriter writer = XmlDictionaryWriter.CreateTextWriter(fs);
-            
-        //    NetDataContractSerializer ser =
-        //        new NetDataContractSerializer();
+        /// <summary>
+        /// Offline Announcement Test
+        ///</summary>
+        [TestMethod()]
+        public void AnnounceOfflineTests()
+        {
+            //Assert.IsNotNull(_hello);
 
-        //    ser.WriteObject(writer, data);
-        //    writer.Close();
-        //}
+            //IEnumerable<IAnounceOfflineTaskFactory> factories = _container.GetExportedValues<IAnounceOfflineTaskFactory>(ContractName.OfflineAnnouncement);
+            //Assert.IsNotNull(factories);
 
-        //public static void ReadObject(string fileName)
-        //{
-        //    Console.WriteLine("Deserializing an instance of the object.");
-        //    FileStream fs = new FileStream(fileName,
-        //    FileMode.Open);
-        //    XmlDictionaryReader reader =
-        //        XmlDictionaryReader.CreateTextReader(fs, new XmlDictionaryReaderQuotas());
-        //    NetDataContractSerializer ser = new NetDataContractSerializer();
+            //foreach (var item in _)
+            //{
+            //    foreach (var factory in factories)
+            //        factory.Create(new DiscoveryMessageSequence[] { item.Item1 }, new EndpointDiscoveryMetadata[] { item.Item2 });
+            //}
+        }
 
-        //    // Deserialize the data and read it from the instance.
-        //    Person deserializedPerson =
-        //        (Person)ser.ReadObject(reader, true);
-        //    fs.Close();
-        //    Console.WriteLine(String.Format("{0} {1}, ID: {2}",
-        //    deserializedPerson.FirstName, deserializedPerson.LastName,
-        //    deserializedPerson.ID));
-        //}
+        /// <summary>
+        /// Multiple Online Announcements Test
+        ///</summary>
+        [TestMethod()]
+        public void AnnounceMultipleOnlineTests()
+        {
+            Assert.IsNotNull(_hello);
+
+            IEnumerable<IAnounceOnlineTaskFactory> factories = _container.GetExportedValues<IAnounceOnlineTaskFactory>(ContractName.OnlineAnnouncement);
+            Assert.IsNotNull(factories);
+
+            foreach (var factory in factories)
+            { 
+                factory.Create(_hello.Select((t) => { return t.Item1; }).ToArray(), 
+                               _hello.Select((t) => { return t.Item2; }).ToArray());
+            }
+        }
+
+        /// <summary>
+        /// Multiple Offline Announcements Test
+        ///</summary>
+        [TestMethod()]
+        public void AnnounceMultipleOfflineTests()
+        {
+            //Assert.IsNotNull(_hello);
+
+            //IEnumerable<IAnounceOfflineTaskFactory> factories = _container.GetExportedValues<IAnounceOfflineTaskFactory>(ContractName.OfflineAnnouncement);
+            //Assert.IsNotNull(factories);
+
+            //foreach (var factory in factories)
+            //{
+            //    factory.Create(_.Select((t) => { return t.Item1; }).ToArray(),
+            //                   _.Select((t) => { return t.Item2; }).ToArray());
+            //}
+        }
     }
 }

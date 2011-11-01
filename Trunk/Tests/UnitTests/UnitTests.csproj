@@ -49,6 +49,8 @@
       <HintPath>..\..\packages\Rx_Experimental-Providers.1.1.11011\lib\Net4\System.Reactive.Providers.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Channels" />
     <Reference Include="System.ServiceModel.Discovery" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
@@ -79,7 +81,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AnouncementsTestData.xml" />
+    <Content Include="AnouncementsTestHello.xml" />
+    <Content Include="AnouncementsTestBye.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

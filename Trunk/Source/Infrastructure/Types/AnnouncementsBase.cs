@@ -80,6 +80,9 @@ namespace System.ServiceModel.Discovery
         protected virtual void OnOnlineAnnouncement(DiscoveryMessageSequence[] messageSequence,
                                                     EndpointDiscoveryMetadata[] endpointDiscoveryMetadata)
         {
+            if (null == endpointDiscoveryMetadata)
+                throw new ArgumentNullException("EndpointDiscoveryMetadata");
+            
             Parallel.For(0, endpointDiscoveryMetadata.Length, (i) =>
             {
                 OnOnlineAnnouncement((null == messageSequence) ? null : messageSequence[i], endpointDiscoveryMetadata[i]);
@@ -102,6 +105,9 @@ namespace System.ServiceModel.Discovery
         protected virtual void OnOfflineAnnouncement(DiscoveryMessageSequence[] messageSequence,
                                                      EndpointDiscoveryMetadata[] endpointDiscoveryMetadata)
         {
+            if (null == endpointDiscoveryMetadata)
+                throw new ArgumentNullException("EndpointDiscoveryMetadata");
+
             Parallel.For(0, endpointDiscoveryMetadata.Length, (i) => 
             {
                 OnOfflineAnnouncement((null == messageSequence) ? null : messageSequence[i], endpointDiscoveryMetadata[i]);

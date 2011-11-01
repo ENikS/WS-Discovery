@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition;
-using System.ServiceModel.Discovery.Logging;
 using System.Reactive.Subjects;
 using System.IO;
 

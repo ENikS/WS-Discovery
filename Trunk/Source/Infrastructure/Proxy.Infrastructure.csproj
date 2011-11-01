@@ -50,19 +50,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContractNames.cs" />
-    <Compile Include="Enums\LoggingCategory.cs" />
-    <Compile Include="Enums\LoggingPriority.cs" />
     <Compile Include="Extensions\TaskExtensions.cs" />
     <Compile Include="Interfaces\IAnounceTaskFactories.cs" />
     <Compile Include="Interfaces\IProbeTaskFactory.cs" />
-    <Compile Include="Interfaces\ILoggerFacade.cs" />
     <Compile Include="Interfaces\IResolveTaskFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Types\AnnouncementsBase.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Generics\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

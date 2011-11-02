@@ -72,10 +72,10 @@ namespace UnitTests
 
             // Load messages from file
             _hello = new List<Tuple<DiscoveryMessageSequence, EndpointDiscoveryMetadata>>();
-            LoadMessages(_hello, Directory.GetParent(typeof(ContractsRepositoryTest).Assembly.Location) + "\\..\\..\\Tests\\UnitTests\\AnouncementsTestHello.xml");
+            Utilities.LoadMessages(_hello, Directory.GetParent(typeof(ContractsRepositoryTest).Assembly.Location) + "\\..\\..\\Tests\\UnitTests\\TestMessagesHello.xml");
 
             _bye = new List<Tuple<DiscoveryMessageSequence, EndpointDiscoveryMetadata>>();
-            LoadMessages(_bye, Directory.GetParent(typeof(ContractsRepositoryTest).Assembly.Location) + "\\..\\..\\Tests\\UnitTests\\AnouncementsTestBye.xml");
+            Utilities.LoadMessages(_bye, Directory.GetParent(typeof(ContractsRepositoryTest).Assembly.Location) + "\\..\\..\\Tests\\UnitTests\\TestMessagesBye.xml");
         }
 
         //Use ClassCleanup to run code after all tests in a class have run
@@ -98,36 +98,6 @@ namespace UnitTests
         //
         #endregion
 
-        //-----------------------------------------------------
-        //  Helper Methods
-        //-----------------------------------------------------
-
-        #region Helper Methods
-
-        private static void LoadMessages(List<Tuple<DiscoveryMessageSequence, EndpointDiscoveryMetadata>> list, string path)
-        {
-            MethodInfo loadSequence = typeof(DiscoveryMessageSequence).GetMethods(BindingFlags.Instance | BindingFlags.NonPublic).First((x) => "ReadFrom" == x.Name);
-            MethodInfo loadEndpoint = typeof(EndpointDiscoveryMetadata).GetMethods(BindingFlags.Instance | BindingFlags.NonPublic).First((x) => "ReadFrom" == x.Name);
-            DiscoveryMessageSequenceGenerator gen = new DiscoveryMessageSequenceGenerator();
-
-            using (XmlReader reader = XmlReader.Create(path))
-            {
-                while (reader.ReadToFollowing("Envelope", "http://www.w3.org/2003/05/soap-envelope"))
-                {
-                    using (Message msg = Message.CreateMessage(reader, Int16.MaxValue, MessageVersion.Soap12))
-                    {
-                        EndpointDiscoveryMetadata data = new EndpointDiscoveryMetadata();
-
-                        loadEndpoint.Invoke(data, new object[] { DiscoveryVersion.WSDiscovery11, msg.GetReaderAtBodyContents() });
-
-                        list.Add(new Tuple<DiscoveryMessageSequence, EndpointDiscoveryMetadata>(gen.Next(), data));
-                    }
-                }
-            }
-        }
-        
-        #endregion
-
         /// <summary>
         /// Online Announcement Null Argument Test
         ///</summary>
@@ -136,7 +106,7 @@ namespace UnitTests
         {
             List<Task> list = new List<Task>();
 
-            IEnumerable<IAnounceOnlineTaskFactory> factories = _container.GetExportedValues<IAnounceOnlineTaskFactory>(ContractName.OnlineAnnouncement);
+            IEnumerable<IAnounceOnlineTaskFactory> factories = _container.GetExportedValues<IAnounceOnlineTaskFactory>();
             Assert.IsNotNull(factories);
             Assert.IsTrue(0 != factories.Count());
 
@@ -168,7 +138,7 @@ namespace UnitTests
         {
             List<Task> list = new List<Task>();
 
-            IEnumerable<IAnounceOfflineTaskFactory> factories = _container.GetExportedValues<IAnounceOfflineTaskFactory>(ContractName.OfflineAnnouncement);
+            IEnumerable<IAnounceOfflineTaskFactory> factories = _container.GetExportedValues<IAnounceOfflineTaskFactory>();
             Assert.IsNotNull(factories);
             Assert.IsTrue(0 != factories.Count());
 
@@ -200,13 +170,13 @@ namespace UnitTests
         {
             Assert.IsNotNull(_hello);
 
-            IEnumerable<IAnounceOnlineTaskFactory> factories = _container.GetExportedValues<IAnounceOnlineTaskFactory>(ContractName.OnlineAnnouncement);
+            IEnumerable<IAnounceOnlineTaskFactory> factories = _container.GetExportedValues<IAnounceOnlineTaskFactory>();
             Assert.IsNotNull(factories);
 
-            foreach (var item in _hello)
+            foreach (var factory in factories)
             {
-                foreach (var factory in factories)
-                    factory.Create(new DiscoveryMessageSequence[] { item.Item1 }, new EndpointDiscoveryMetadata[] { item.Item2 });
+                factory.Create(_hello.Select((t) => { return t.Item1; }).ToArray(),
+                               _hello.Select((t) => { return t.Item2; }).ToArray());
             }
         }
 
@@ -228,40 +198,5 @@ namespace UnitTests
             //}
         }
 
-        /// <summary>
-        /// Multiple Online Announcements Test
-        ///</summary>
-        [TestMethod()]
-        public void AnnounceMultipleOnlineTests()
-        {
-            Assert.IsNotNull(_hello);
-
-            IEnumerable<IAnounceOnlineTaskFactory> factories = _container.GetExportedValues<IAnounceOnlineTaskFactory>(ContractName.OnlineAnnouncement);
-            Assert.IsNotNull(factories);
-
-            foreach (var factory in factories)
-            { 
-                factory.Create(_hello.Select((t) => { return t.Item1; }).ToArray(), 
-                               _hello.Select((t) => { return t.Item2; }).ToArray());
-            }
-        }
-
-        /// <summary>
-        /// Multiple Offline Announcements Test
-        ///</summary>
-        [TestMethod()]
-        public void AnnounceMultipleOfflineTests()
-        {
-            //Assert.IsNotNull(_hello);
-
-            //IEnumerable<IAnounceOfflineTaskFactory> factories = _container.GetExportedValues<IAnounceOfflineTaskFactory>(ContractName.OfflineAnnouncement);
-            //Assert.IsNotNull(factories);
-
-            //foreach (var factory in factories)
-            //{
-            //    factory.Create(_.Select((t) => { return t.Item1; }).ToArray(),
-            //                   _.Select((t) => { return t.Item2; }).ToArray());
-            //}
-        }
     }
 }

@@ -21,6 +21,8 @@ namespace UnitTests
     {
         private static CompositionContainer _container;
 
+        private static List<FindRequestContext> _probes;
+
         private TestContext testContextInstance;
 
         /// <summary>
@@ -61,6 +63,21 @@ namespace UnitTests
             _container = new CompositionContainer(catalog);
             if (_container == null)
                 throw new InvalidOperationException();
+
+            // Load messages from file
+            List<Tuple<DiscoveryMessageSequence, EndpointDiscoveryMetadata>>  hello = new List<Tuple<DiscoveryMessageSequence, EndpointDiscoveryMetadata>>();
+            Utilities.LoadMessages(hello, Directory.GetParent(typeof(ContractsRepositoryTest).Assembly.Location) + "\\..\\..\\Tests\\UnitTests\\TestMessagesHello.xml");
+
+            // Load repository with endpoints
+            foreach (var factory in _container.GetExportedValues<IAnounceOnlineTaskFactory>()
+                                              .Where(x=>x.GetType() == typeof(ContractsRepository)))
+            {
+                factory.Create(hello.Select((t) => { return t.Item1; }).ToArray(),
+                               hello.Select((t) => { return t.Item2; }).ToArray());
+            }
+
+            _probes = new List<FindRequestContext>();
+            Utilities.LoadMessages(_probes, Directory.GetParent(typeof(ContractsRepositoryTest).Assembly.Location) + "\\..\\..\\Tests\\UnitTests\\TestMessagesProbe.xml");
         }
         
         //Use ClassCleanup to run code after all tests in a class have run
@@ -95,6 +112,22 @@ namespace UnitTests
 
             Assert.IsNotNull(target);
         }
+
+        /// <summary>
+        /// Probe test
+        ///</summary>
+        [TestMethod()]
+        public void ProbeTest()
+        {
+            IProbeTaskFactory factory = _container.GetExportedValue<IProbeTaskFactory>();
+            
+            Task target = factory.Create(_probes[0]);
+            Assert.IsNotNull(target);
+
+            (target as IAsyncResult).AsyncWaitHandle.WaitOne();
+            Assert.IsNotNull(target);
+        }
+
 
     }
 }

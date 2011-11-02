@@ -10,7 +10,7 @@ namespace System.ServiceModel.Discovery
     /// <summary>
     /// Task factory interface to create Tasks handling Resolve requests
     /// </summary>
-    [InheritedExport(ContractName.Resolve)]
+    [InheritedExport]
     public interface IResolveTaskFactory
     {
         /// <summary>

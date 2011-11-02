@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Announcements>
+    <s:Envelope xmlns:a="http://www.w3.org/2005/08/addressing" xmlns:s="http://www.w3.org/2003/05/soap-envelope">
+        <s:Header>
+            <a:Action s:mustUnderstand="1">http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01/Probe</a:Action>
+            <a:MessageID>urn:uuid:6f7a0fa9-74ca-4697-be72-a3cc628a1003</a:MessageID>
+            <a:ReplyTo>
+                <a:Address>http://www.w3.org/2005/08/addressing/anonymous</a:Address>
+            </a:ReplyTo>
+            <a:To s:mustUnderstand="1">net.tcp://localhost:8001/Probe</a:To>
+        </s:Header>
+        <s:Body>
+            <Probe xmlns="http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01">
+                <d:Types xmlns:d="http://docs.oasis-open.org/ws-dd/ns/discovery/2009/01" xmlns:dp0="http://Microsoft.Samples.Discovery">dp0:ICalculatorService</d:Types>
+                <Duration xmlns="http://schemas.microsoft.com/ws/2008/06/discovery">PT20S</Duration>
+            </Probe>
+        </s:Body>
+    </s:Envelope>
+</Announcements>

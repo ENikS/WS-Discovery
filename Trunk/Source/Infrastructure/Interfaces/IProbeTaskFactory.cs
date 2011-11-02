@@ -10,7 +10,7 @@ namespace System.ServiceModel.Discovery
     /// <summary>
     /// Task factory interface to create Tasks handling Probe requests
     /// </summary>
-    [InheritedExport(ContractName.Find)]
+    [InheritedExport]
     public interface IProbeTaskFactory
     {
         /// <summary>

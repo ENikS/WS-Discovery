@@ -22,7 +22,7 @@ namespace System.ServiceModel.Discovery
         /// are created by calling each factory and passing <see cref="DiscoveryMessageSequence"/> and 
         /// <see cref="EndpointDiscoveryMetadata"/> to each factory. 
         /// </summary>
-        [ImportMany(ContractName.OnlineAnnouncement)]
+        [ImportMany]
         private IEnumerable<IAnounceOnlineTaskFactory> _onlineTaskFactories;
 
         /// <summary>
@@ -30,13 +30,13 @@ namespace System.ServiceModel.Discovery
         /// are created by calling each factory and passing <see cref="DiscoveryMessageSequence"/> and 
         /// <see cref="EndpointDiscoveryMetadata"/> to each factory. 
         /// </summary>
-        [ImportMany(ContractName.OfflineAnnouncement)]
+        [ImportMany]
         private IEnumerable<IAnounceOfflineTaskFactory> _offlineTaskFactories;
 
-        [Import(ContractName.Find)]
+        [Import]
         private IProbeTaskFactory _findTaskFactory;
 
-        [Import(ContractName.Resolve)]
+        [Import]
         private IResolveTaskFactory _resolveTaskFactory;
 
         #endregion

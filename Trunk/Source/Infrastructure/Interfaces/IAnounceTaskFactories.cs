@@ -10,7 +10,7 @@ namespace System.ServiceModel.Discovery
     /// <summary>
     /// Task factory interface to create Tasks handling Online announcements
     /// </summary>
-    [InheritedExport(ContractName.OnlineAnnouncement)]
+    [InheritedExport]
     public interface IAnounceOnlineTaskFactory
     {
         /// <summary>
@@ -25,7 +25,7 @@ namespace System.ServiceModel.Discovery
     /// <summary>
     /// Task factory interface to create Tasks handling Offline announcements
     /// </summary>
-    [InheritedExport(ContractName.OfflineAnnouncement)]
+    [InheritedExport]
     public interface IAnounceOfflineTaskFactory
     {
         /// <summary>

@@ -65,5 +65,31 @@ namespace UnitTests
                 }
             }
         }
+
+        /// <summary>
+        /// Loads all Probe messages from file into list.
+        /// </summary>
+        /// <param name="list">Reference to a list</param>
+        /// <param name="path">Path to xml file</param>
+        public static void LoadMessages(List<ResolveCriteria> list, string path)
+        {
+            MethodInfo loadCriteria = typeof(FindCriteria).GetMethods(BindingFlags.Instance | BindingFlags.NonPublic).First((x) => "ReadFrom" == x.Name);
+            ConstructorInfo ctorFindRequestContext = typeof(FindRequestContext).GetConstructors(BindingFlags.Instance | BindingFlags.NonPublic).First();
+
+            //using (XmlReader reader = XmlReader.Create(path))
+            //{
+            //    while (reader.ReadToFollowing("Envelope", "http://www.w3.org/2003/05/soap-envelope"))
+            //    {
+            //        using (Message msg = Message.CreateMessage(reader, Int16.MaxValue, MessageVersion.Soap12))
+            //        {
+            //            FindCriteria data = FindCriteria.CreateMetadataExchangeEndpointCriteria();
+
+            //            loadCriteria.Invoke(data, new object[] { DiscoveryVersion.WSDiscovery11, msg.GetReaderAtBodyContents() });
+
+            //            list.Add((FindRequestContext)ctorFindRequestContext.Invoke(new object[] { data }));
+            //        }
+            //    }
+            //}
+        }
     }
 }

@@ -59,11 +59,11 @@ namespace UnitTests
             AggregateCatalog catalog = new AggregateCatalog();
 
             // Load Add-in modules from the directory
-            if (Directory.Exists(Directory.GetParent(typeof(ContractsRepositoryTest).Assembly.Location) + "\\Modules"))
-                catalog.Catalogs.Add(new DirectoryCatalog(Directory.GetParent(typeof(ContractsRepositoryTest).Assembly.Location) + "\\Modules"));
+            if (Directory.Exists(Directory.GetParent(typeof(ResolveModuleTests).Assembly.Location) + "\\Modules"))
+                catalog.Catalogs.Add(new DirectoryCatalog(Directory.GetParent(typeof(ResolveModuleTests).Assembly.Location) + "\\Modules"));
 
             // Add this assembly
-            catalog.Catalogs.Add(new AssemblyCatalog(typeof(ContractsRepositoryTest).Assembly));
+            catalog.Catalogs.Add(new AssemblyCatalog(typeof(ResolveModuleTests).Assembly));
 
             // Create container
             _container = new CompositionContainer(catalog);
@@ -72,10 +72,10 @@ namespace UnitTests
 
             // Load messages from file
             _hello = new List<Tuple<DiscoveryMessageSequence, EndpointDiscoveryMetadata>>();
-            Utilities.LoadMessages(_hello, Directory.GetParent(typeof(ContractsRepositoryTest).Assembly.Location) + "\\..\\..\\Tests\\UnitTests\\TestMessagesHello.xml");
+            Utilities.LoadMessages(_hello, Directory.GetParent(typeof(ResolveModuleTests).Assembly.Location) + "\\..\\..\\Tests\\UnitTests\\TestMessagesHello.xml");
 
             _bye = new List<Tuple<DiscoveryMessageSequence, EndpointDiscoveryMetadata>>();
-            Utilities.LoadMessages(_bye, Directory.GetParent(typeof(ContractsRepositoryTest).Assembly.Location) + "\\..\\..\\Tests\\UnitTests\\TestMessagesBye.xml");
+            Utilities.LoadMessages(_bye, Directory.GetParent(typeof(ResolveModuleTests).Assembly.Location) + "\\..\\..\\Tests\\UnitTests\\TestMessagesBye.xml");
         }
 
         //Use ClassCleanup to run code after all tests in a class have run

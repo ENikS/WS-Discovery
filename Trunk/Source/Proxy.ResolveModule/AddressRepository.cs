@@ -1,48 +1,28 @@
 ﻿using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
-using System.Diagnostics;
+using System.Reactive.Concurrency;
+using System.Reactive.Linq;
+using System.Reactive.Threading.Tasks;
 using System.ServiceModel.Discovery;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Linq;
+using System.ServiceModel;
 
 namespace Proxy.ResolveModule
 {
     [Export]
     [PartCreationPolicy(CreationPolicy.Shared)]
-    public class AddressRepository : AnnouncementsBase, IResolveTaskFactory
+    public class AddressRepository : AnnouncementsBase<EndpointAddress>, IResolveTaskFactory
     {
         //-----------------------------------------------------
         //  Fields
         //-----------------------------------------------------
 
         #region Fields
-
-
-        #endregion
-
-        //-----------------------------------------------------
-        //  Methods
-        //-----------------------------------------------------
-
-        #region Methods
-
-
-        #endregion
-
-        //-----------------------------------------------------
-        //  Task factories
-        //-----------------------------------------------------
-
-        #region Task Factories
-
-        /// <summary>
-        /// Creates a Task that processes Resolve request
-        /// </summary>
-        /// <param name="findRequestContext">Criteria for finding correct endpoints</param>
-        /// <returns>Returns <see cref="Task<EndpointDiscoveryMetadata>"/> object which encapsulates request handler</returns>
-        Task<EndpointDiscoveryMetadata> IResolveTaskFactory.Create(ResolveCriteria resolveCriteria)
-        {
-            return Task<EndpointDiscoveryMetadata>.Factory.StartNew(() => { return null; });
-        }
 
         #endregion
 
@@ -60,6 +40,10 @@ namespace Proxy.ResolveModule
         override protected void OnOnlineAnnouncement(DiscoveryMessageSequence messageSequence,
                                                     EndpointDiscoveryMetadata endpointDiscoveryMetadata)
         {
+            IProducerConsumerCollection<EndpointDiscoveryMetadata> items = _dictionary.GetOrAdd(endpointDiscoveryMetadata.Address, _endpointCollectionFactory)
+                as IProducerConsumerCollection<EndpointDiscoveryMetadata>;
+
+            items.TryAdd(endpointDiscoveryMetadata);
         }
 
         #endregion
@@ -78,6 +62,52 @@ namespace Proxy.ResolveModule
         override protected void OnOfflineAnnouncement(DiscoveryMessageSequence messageSequence,
                                                       EndpointDiscoveryMetadata endpointDiscoveryMetadata)
         {
+            if (!_dictionary.ContainsKey(endpointDiscoveryMetadata.Address))
+                return;
+            
+            IProducerConsumerCollection<EndpointDiscoveryMetadata> items = _dictionary[endpointDiscoveryMetadata.Address]
+                as IProducerConsumerCollection<EndpointDiscoveryMetadata>;
+
+            items.TryTake(out endpointDiscoveryMetadata);
+
+            if (0 == items.Count)
+            {
+                IEnumerable<EndpointDiscoveryMetadata> value;
+
+                _dictionary.TryRemove(endpointDiscoveryMetadata.Address, out value);
+            }
+        }
+
+        #endregion
+
+        //-----------------------------------------------------
+        //  Interface Implementations
+        //-----------------------------------------------------
+
+        #region IResolveTaskFactory Members
+
+        /// <summary>
+        /// Creates a Task that processes Resolve request
+        /// </summary>
+        /// <param name="findRequestContext">Criteria for finding correct endpoints</param>
+        /// <returns>Returns <see cref="Task<EndpointDiscoveryMetadata>"/> object which encapsulates request handler</returns>
+        Task<EndpointDiscoveryMetadata> IResolveTaskFactory.Create(ResolveCriteria resolveCriteria)
+        {
+            //if (!_dictionary.ContainsKey(resolveCriteria.Address))
+                return Task<EndpointDiscoveryMetadata>.Factory.StartNew(() => { return null; });
+            
+            // Create Task containing Rx LINQ query 
+            return _dictionary[resolveCriteria.Address].ToObservable()                                               // As Observable 
+                                                       .ObserveOn(Scheduler.NewThread)                               // Asynchronously
+                                                       .TakeUntil(Observable.Return((EndpointDiscoveryMetadata)null) // Take until...
+                                                       .Delay(resolveCriteria.Duration))                             // ...until timeout
+                                                       .Where(endpoint =>
+                                                       {
+                                                           return _extensionsPredicate(endpoint.Extensions,          // Match extensions  
+                                                                                       resolveCriteria.Extensions);
+                                                       })
+                                                       .Take(1)
+                                                       .ToTask();
         }
 
         #endregion

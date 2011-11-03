@@ -93,7 +93,7 @@ namespace Proxy.ResolveModule
         /// <returns>Returns <see cref="Task<EndpointDiscoveryMetadata>"/> object which encapsulates request handler</returns>
         Task<EndpointDiscoveryMetadata> IResolveTaskFactory.Create(ResolveCriteria resolveCriteria)
         {
-            //if (!_dictionary.ContainsKey(resolveCriteria.Address))
+            if (!_dictionary.ContainsKey(resolveCriteria.Address))
                 return Task<EndpointDiscoveryMetadata>.Factory.StartNew(() => { return null; });
             
             // Create Task containing Rx LINQ query 

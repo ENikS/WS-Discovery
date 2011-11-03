@@ -25,9 +25,9 @@ namespace UnitTests
     {
         private static CompositionContainer _container;
 
-        private static List<Tuple<DiscoveryMessageSequence, EndpointDiscoveryMetadata>> _hello;
+        private static List<Tuple<DiscoveryMessageSequence, EndpointDiscoveryMetadata>> _hellos;
 
-        private static List<Tuple<DiscoveryMessageSequence, EndpointDiscoveryMetadata>> _bye;
+        private static List<Tuple<DiscoveryMessageSequence, EndpointDiscoveryMetadata>> _byes;
 
         private TestContext testContextInstance;
 
@@ -55,27 +55,26 @@ namespace UnitTests
         [ClassInitialize()]
         public static void MyClassInitialize(TestContext testContext)
         {
+            _hellos = new List<Tuple<DiscoveryMessageSequence, EndpointDiscoveryMetadata>>();
+
+            _byes = new List<Tuple<DiscoveryMessageSequence, EndpointDiscoveryMetadata>>();
+
             // Create and configure catalog
             AggregateCatalog catalog = new AggregateCatalog();
 
-            // Load Add-in modules from the directory
-            if (Directory.Exists(Directory.GetParent(typeof(ResolveModuleTests).Assembly.Location) + "\\Modules"))
-                catalog.Catalogs.Add(new DirectoryCatalog(Directory.GetParent(typeof(ResolveModuleTests).Assembly.Location) + "\\Modules"));
-
-            // Add this assembly
-            catalog.Catalogs.Add(new AssemblyCatalog(typeof(ResolveModuleTests).Assembly));
+            // Load Add-in modules from the directory including this module
+            Debug.Assert(Directory.Exists(Directory.GetParent(typeof(AnnouncementTests).Assembly.Location).ToString()));
+            catalog.Catalogs.Add(new DirectoryCatalog(Directory.GetParent(typeof(AnnouncementTests).Assembly.Location).ToString()));
 
             // Create container
             _container = new CompositionContainer(catalog);
-            if (_container == null)
-                throw new InvalidOperationException();
+            Assert.IsNotNull(_container == null, "Failed to create MEF container");
+
+            string dataDir = Directory.GetParent(typeof(AnnouncementTests).Assembly.Location) + "\\..\\..\\..\\Tests\\ModulesTests\\Data\\";
 
             // Load messages from file
-            _hello = new List<Tuple<DiscoveryMessageSequence, EndpointDiscoveryMetadata>>();
-            Utilities.LoadMessages(_hello, Directory.GetParent(typeof(ResolveModuleTests).Assembly.Location) + "\\..\\..\\Tests\\UnitTests\\TestMessagesHello.xml");
-
-            _bye = new List<Tuple<DiscoveryMessageSequence, EndpointDiscoveryMetadata>>();
-            Utilities.LoadMessages(_bye, Directory.GetParent(typeof(ResolveModuleTests).Assembly.Location) + "\\..\\..\\Tests\\UnitTests\\TestMessagesBye.xml");
+            Utilities.LoadMessages(_hellos, dataDir + "TestMessagesHello.xml");
+            Utilities.LoadMessages(_byes, dataDir + "TestMessagesBye.xml");
         }
 
         //Use ClassCleanup to run code after all tests in a class have run
@@ -168,15 +167,15 @@ namespace UnitTests
         [TestMethod()]
         public void AnnounceOnlineTests()
         {
-            Assert.IsNotNull(_hello);
+            Assert.IsNotNull(_hellos);
 
             IEnumerable<IAnounceOnlineTaskFactory> factories = _container.GetExportedValues<IAnounceOnlineTaskFactory>();
             Assert.IsNotNull(factories);
 
             foreach (var factory in factories)
             {
-                factory.Create(_hello.Select((t) => { return t.Item1; }).ToArray(),
-                               _hello.Select((t) => { return t.Item2; }).ToArray());
+                factory.Create(_hellos.Select((t) => { return t.Item1; }).ToArray(),
+                               _hellos.Select((t) => { return t.Item2; }).ToArray());
             }
         }
 
@@ -186,16 +185,17 @@ namespace UnitTests
         [TestMethod()]
         public void AnnounceOfflineTests()
         {
-            //Assert.IsNotNull(_hello);
+            Assert.IsNotNull(_byes);
 
-            //IEnumerable<IAnounceOfflineTaskFactory> factories = _container.GetExportedValues<IAnounceOfflineTaskFactory>(ContractName.OfflineAnnouncement);
-            //Assert.IsNotNull(factories);
+            IEnumerable<IAnounceOfflineTaskFactory> factories = _container.GetExportedValues<IAnounceOfflineTaskFactory>();
+            Assert.IsNotNull(factories);
 
-            //foreach (var item in _)
-            //{
-            //    foreach (var factory in factories)
-            //        factory.Create(new DiscoveryMessageSequence[] { item.Item1 }, new EndpointDiscoveryMetadata[] { item.Item2 });
-            //}
+
+            foreach (var factory in factories)
+            {
+                factory.Create(_byes.Select((t) => { return t.Item1; }).ToArray(),
+                               _byes.Select((t) => { return t.Item2; }).ToArray());
+            }
         }
 
     }

@@ -17,11 +17,17 @@ namespace UnitTests
     ///to contain all ContractsRepositoryTest Unit Tests
     ///</summary>
     [TestClass()]
-    public class ProbeModuleTests
+    public partial class ProbeModuleTests
     {
         private static CompositionContainer _container;
 
-        private static List<FindRequestContext> _probeRequests;
+        private static List<Tuple<DiscoveryMessageSequence, EndpointDiscoveryMetadata>> _hellos;
+
+        private static List<Tuple<DiscoveryMessageSequence, EndpointDiscoveryMetadata>> _byes;
+
+        private static List<FindRequestContext> _probes;
+
+        private static Type _moduleType = typeof(ContractsRepository);
 
         private TestContext testContextInstance;
 
@@ -49,43 +55,51 @@ namespace UnitTests
         [ClassInitialize()]
         public static void MyClassInitialize(TestContext testContext)
         {
+            _hellos = new List<Tuple<DiscoveryMessageSequence, EndpointDiscoveryMetadata>>();
+
+            _probes = new List<FindRequestContext>();
+
+            _byes = new List<Tuple<DiscoveryMessageSequence, EndpointDiscoveryMetadata>>();
+
             // Create and configure catalog
             AggregateCatalog catalog = new AggregateCatalog();
 
-            // Load Add-in modules from the directory
-            if (Directory.Exists(Directory.GetParent(typeof(ResolveModuleTests).Assembly.Location) + "\\Modules"))
-                catalog.Catalogs.Add(new DirectoryCatalog(Directory.GetParent(typeof(ResolveModuleTests).Assembly.Location) + "\\Modules"));
-
-            // Add this assembly
-            catalog.Catalogs.Add(new AssemblyCatalog(typeof(ResolveModuleTests).Assembly));
+            // Load Add-in modules from the directory including this module
+            Debug.Assert(Directory.Exists(Directory.GetParent(typeof(ProbeModuleTests).Assembly.Location).ToString()));
+            catalog.Catalogs.Add(new DirectoryCatalog(Directory.GetParent(typeof(ProbeModuleTests).Assembly.Location).ToString()));
 
             // Create container
             _container = new CompositionContainer(catalog);
-            if (_container == null)
-                throw new InvalidOperationException();
+            Assert.IsNotNull(_container == null, "Failed to create MEF container");
+
+            string dataDir = Directory.GetParent(typeof(AnnouncementTests).Assembly.Location) + "\\..\\..\\..\\Tests\\ModulesTests\\Data\\";
 
             // Load messages from file
-            List<Tuple<DiscoveryMessageSequence, EndpointDiscoveryMetadata>>  hello = new List<Tuple<DiscoveryMessageSequence, EndpointDiscoveryMetadata>>();
-            Utilities.LoadMessages(hello, Directory.GetParent(typeof(ResolveModuleTests).Assembly.Location) + "\\..\\..\\Tests\\UnitTests\\TestMessagesHello.xml");
+            Utilities.LoadMessages(_hellos, dataDir + "TestMessagesHello.xml");
+            Utilities.LoadMessages(_probes, dataDir + "TestMessagesProbe.xml");
+            Utilities.LoadMessages(_byes, dataDir   + "TestMessagesBye.xml");
 
             // Load repository with endpoints
             foreach (var factory in _container.GetExportedValues<IAnounceOnlineTaskFactory>()
-                                              .Where(x=>x.GetType() == typeof(ContractsRepository)))
+                                              .Where(x => x.GetType().Equals(_moduleType)))
             {
-                factory.Create(hello.Select((t) => { return t.Item1; }).ToArray(),
-                               hello.Select((t) => { return t.Item2; }).ToArray());
+                factory.Create(_hellos.Select((t) => { return t.Item1; }).ToArray(),
+                               _hellos.Select((t) => { return t.Item2; }).ToArray());
             }
-
-            _probeRequests = new List<FindRequestContext>();
-            Utilities.LoadMessages(_probeRequests, Directory.GetParent(typeof(ResolveModuleTests).Assembly.Location) + "\\..\\..\\Tests\\UnitTests\\TestMessagesProbe.xml");
         }
         
         //Use ClassCleanup to run code after all tests in a class have run
-        //[ClassCleanup()]
-        //public static void MyClassCleanup()
-        //{
-        //}
-        //
+        [ClassCleanup()]
+        public static void MyClassCleanup()
+        {
+            foreach (var factory in _container.GetExportedValues<IAnounceOnlineTaskFactory>()
+                                              .Where(x => x.GetType().Equals(_moduleType)))
+            {
+                factory.Create(_byes.Select((t) => { return t.Item1; }).ToArray(),
+                               _byes.Select((t) => { return t.Item2; }).ToArray());
+            }
+        }
+        
         //Use TestInitialize to run code before running each test
         //[TestInitialize()]
         //public void MyTestInitialize()
@@ -121,7 +135,7 @@ namespace UnitTests
         {
             IProbeTaskFactory factory = _container.GetExportedValue<IProbeTaskFactory>();
             
-            Task target = factory.Create(_probeRequests[0]);
+            Task target = factory.Create(_probes[0]);
             Assert.IsNotNull(target);
 
             (target as IAsyncResult).AsyncWaitHandle.WaitOne();

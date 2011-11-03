@@ -26,6 +26,8 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Proxy.Installer", "Source\P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModulesTests", "Tests\ModulesTests\ModulesTests.csproj", "{57D82912-569C-4F6A-A5AA-E03463A0AA49}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proxy.Service.Host", "Source\Proxy.Service.Host\Proxy.Service.Host.csproj", "{29C4475D-ABB4-4D0D-977F-2E0871FB9E5F}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = WS-Discovery.vsmdi
@@ -105,6 +107,16 @@ Global
 		{57D82912-569C-4F6A-A5AA-E03463A0AA49}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{57D82912-569C-4F6A-A5AA-E03463A0AA49}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{57D82912-569C-4F6A-A5AA-E03463A0AA49}.Release|x86.ActiveCfg = Release|Any CPU
+		{29C4475D-ABB4-4D0D-977F-2E0871FB9E5F}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{29C4475D-ABB4-4D0D-977F-2E0871FB9E5F}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{29C4475D-ABB4-4D0D-977F-2E0871FB9E5F}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{29C4475D-ABB4-4D0D-977F-2E0871FB9E5F}.Debug|x86.ActiveCfg = Debug|x86
+		{29C4475D-ABB4-4D0D-977F-2E0871FB9E5F}.Debug|x86.Build.0 = Debug|x86
+		{29C4475D-ABB4-4D0D-977F-2E0871FB9E5F}.Release|Any CPU.ActiveCfg = Release|x86
+		{29C4475D-ABB4-4D0D-977F-2E0871FB9E5F}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{29C4475D-ABB4-4D0D-977F-2E0871FB9E5F}.Release|Mixed Platforms.Build.0 = Release|x86
+		{29C4475D-ABB4-4D0D-977F-2E0871FB9E5F}.Release|x86.ActiveCfg = Release|x86
+		{29C4475D-ABB4-4D0D-977F-2E0871FB9E5F}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

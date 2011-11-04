@@ -9,9 +9,9 @@ using System.Linq;
 namespace System.ServiceModel.Discovery.ProxyService.Host
 {
     [RunInstaller(true)]
-    public partial class ServiceHostInstaller : System.Configuration.Install.Installer
+    public partial class ProxyServiceHostInstaller : System.Configuration.Install.Installer
     {
-        public ServiceHostInstaller()
+        public ProxyServiceHostInstaller()
         {
             InitializeComponent();
         }

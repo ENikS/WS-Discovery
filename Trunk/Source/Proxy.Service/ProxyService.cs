@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 #pragma warning disable 0649,0169
 
@@ -224,7 +225,10 @@ namespace System.ServiceModel.Discovery
         //
         // Returns:
         //     A reference to the pending asynchronous operation.
-        //protected virtual IAsyncResult BeginShouldRedirectFind(FindCriteria resolveCriteria, AsyncCallback callback, object state);
+        //protected override bool EndShouldRedirectFind(IAsyncResult result, out Collection<EndpointDiscoveryMetadata> redirectionEndpoints)
+        //{
+        //    return base.EndShouldRedirectFind(result, out redirectionEndpoints);
+        //}
 
         //
         // Summary:
@@ -241,7 +245,10 @@ namespace System.ServiceModel.Discovery
         //
         // Returns:
         //     true if the find operation should be redirected, otherwise false.
-        //protected virtual bool EndShouldRedirectFind(IAsyncResult result, out Collection<EndpointDiscoveryMetadata> redirectionEndpoints);
+        //protected override bool EndShouldRedirectFind(IAsyncResult result, out Collection<EndpointDiscoveryMetadata> redirectionEndpoints)
+        //{
+        //    return base.EndShouldRedirectFind(result, out redirectionEndpoints);
+        //}
 
         #endregion
 
@@ -268,7 +275,10 @@ namespace System.ServiceModel.Discovery
         //
         // Returns:
         //     A reference to the pending asynchronous operation.
-        //protected virtual IAsyncResult BeginShouldRedirectResolve(ResolveCriteria findCriteria, AsyncCallback callback, object state);
+        //protected override IAsyncResult BeginShouldRedirectResolve(ResolveCriteria findCriteria, AsyncCallback callback, object state)
+        //{
+        //    return base.BeginShouldRedirectResolve(findCriteria, callback, state);
+        //}
 
         //
         // Summary:
@@ -285,7 +295,10 @@ namespace System.ServiceModel.Discovery
         //
         // Returns:
         //     true if the resolve operation should be redirected, otherwise false.
-        //protected virtual bool EndShouldRedirectResolve(IAsyncResult result, out Collection<EndpointDiscoveryMetadata> redirectionEndpoints);
+        //protected override bool EndShouldRedirectResolve(IAsyncResult result, out Collection<EndpointDiscoveryMetadata> redirectionEndpoints)
+        //{
+        //    return base.EndShouldRedirectResolve(result, out redirectionEndpoints);
+        //}
         
         #endregion
     }

@@ -225,9 +225,9 @@ namespace System.ServiceModel.Discovery
         //
         // Returns:
         //     A reference to the pending asynchronous operation.
-        //protected override bool EndShouldRedirectFind(IAsyncResult result, out Collection<EndpointDiscoveryMetadata> redirectionEndpoints)
+        //protected override IAsyncResult BeginShouldRedirectFind(FindCriteria resolveCriteria, AsyncCallback callback, object state)
         //{
-        //    return base.EndShouldRedirectFind(result, out redirectionEndpoints);
+        //    return base.BeginShouldRedirectFind(resolveCriteria, callback, state);
         //}
 
         //

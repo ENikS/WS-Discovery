@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace System.ServiceModel.Discovery
 {
+    /// <summary>
+    /// WCF service implementing WS-Discovery protocol.
+    /// </summary>
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple)]
     public partial class ProxyService : DiscoveryProxy
     {

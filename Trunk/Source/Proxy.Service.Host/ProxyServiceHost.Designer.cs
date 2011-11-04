@@ -1,13 +1,13 @@
-﻿namespace System.ServiceModel.Discovery.ProxyService.Host
+﻿namespace Proxy.Service.Host
 {
-    partial class ServiceHostInstaller
+    partial class ProxyServiceHost
     {
-        /// <summary>
+        /// <summary> 
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -22,24 +22,16 @@
 
         #region Component Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            this.ProxyServiceHost = new Proxy.Service.Host.ServiceHost();
-            // 
-            // ProxyServiceHost
-            // 
-            this.ProxyServiceHost.CanShutdown = true;
-            this.ProxyServiceHost.ExitCode = 0;
-            this.ProxyServiceHost.ServiceName = "WSDiscoveryProxy";
-
+            components = new System.ComponentModel.Container();
+            this.ServiceName = "Service1";
         }
 
         #endregion
-
-        private Proxy.Service.Host.ServiceHost ProxyServiceHost;
     }
 }

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ServiceProcess;
 using System.Text;
+#if DEBUG
+using ServiceProcess.Helpers;
+#endif
 
 namespace Proxy.Service.Host
 {
@@ -16,9 +19,13 @@ namespace Proxy.Service.Host
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[] 
             { 
-                new ServiceHost() 
+                new ProxyServiceHost() 
             };
+#if DEBUG
+            ServicesToRun.LoadServices();
+#else
             ServiceBase.Run(ServicesToRun);
+#endif
         }
     }
 }

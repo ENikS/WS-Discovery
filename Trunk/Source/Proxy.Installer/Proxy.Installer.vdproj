@@ -57,6 +57,24 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_26EF39A1AB6CFF5588C1EC4552092AF3"
+        "OwnerKey" = "8:_9337E63054394B369D999DA163837EAC"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3788BF6C3F1C75FA5748ADD238F95CB8"
+        "OwnerKey" = "8:_DDCC33C53253469FBF5C6536A9F2A239"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3788BF6C3F1C75FA5748ADD238F95CB8"
+        "OwnerKey" = "8:_E347EE8340F147A499D37DC05E0E30C2"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_4001D8577B447B4A492B4E4EEAE49EBA"
         "OwnerKey" = "8:_9337E63054394B369D999DA163837EAC"
         "MsmSig" = "8:_UNDEFINED"
@@ -65,6 +83,30 @@
         {
         "MsmKey" = "8:_4001D8577B447B4A492B4E4EEAE49EBA"
         "OwnerKey" = "8:_6DB0CB3719545211DBF1498CA241C500"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5466C594EB502CE6FB0E6CF9ABA2F5A0"
+        "OwnerKey" = "8:_9337E63054394B369D999DA163837EAC"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5466C594EB502CE6FB0E6CF9ABA2F5A0"
+        "OwnerKey" = "8:_E347EE8340F147A499D37DC05E0E30C2"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5466C594EB502CE6FB0E6CF9ABA2F5A0"
+        "OwnerKey" = "8:_DDCC33C53253469FBF5C6536A9F2A239"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5466C594EB502CE6FB0E6CF9ABA2F5A0"
+        "OwnerKey" = "8:_26EF39A1AB6CFF5588C1EC4552092AF3"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -87,42 +129,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_A980BC9B922BFAFC2B01ABDCA49543B8"
-        "OwnerKey" = "8:_E347EE8340F147A499D37DC05E0E30C2"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_A980BC9B922BFAFC2B01ABDCA49543B8"
-        "OwnerKey" = "8:_D76EFC88F7D9973249FC6A4C50EDF7B8"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_A980BC9B922BFAFC2B01ABDCA49543B8"
-        "OwnerKey" = "8:_9337E63054394B369D999DA163837EAC"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_A980BC9B922BFAFC2B01ABDCA49543B8"
-        "OwnerKey" = "8:_DDCC33C53253469FBF5C6536A9F2A239"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_CD59C8AB5A0172E6E5D4F9907F758E4C"
-        "OwnerKey" = "8:_E347EE8340F147A499D37DC05E0E30C2"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_CD59C8AB5A0172E6E5D4F9907F758E4C"
-        "OwnerKey" = "8:_DDCC33C53253469FBF5C6536A9F2A239"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_D22EE3495B5C8ADE493A36FA085B68A6"
         "OwnerKey" = "8:_9337E63054394B369D999DA163837EAC"
         "MsmSig" = "8:_UNDEFINED"
@@ -136,7 +142,25 @@
         "Entry"
         {
         "MsmKey" = "8:_D64229ED855B7FFE08BAAFC369D2B64D"
+        "OwnerKey" = "8:_1E8A53007C725118F55CBA5D48D056B4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D64229ED855B7FFE08BAAFC369D2B64D"
         "OwnerKey" = "8:_E347EE8340F147A499D37DC05E0E30C2"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D64229ED855B7FFE08BAAFC369D2B64D"
+        "OwnerKey" = "8:_3788BF6C3F1C75FA5748ADD238F95CB8"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D64229ED855B7FFE08BAAFC369D2B64D"
+        "OwnerKey" = "8:_DDCC33C53253469FBF5C6536A9F2A239"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -167,30 +191,6 @@
         {
         "MsmKey" = "8:_D64229ED855B7FFE08BAAFC369D2B64D"
         "OwnerKey" = "8:_24D80D39454CCC8CF6296D3D9ECA1FD6"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D64229ED855B7FFE08BAAFC369D2B64D"
-        "OwnerKey" = "8:_1E8A53007C725118F55CBA5D48D056B4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D64229ED855B7FFE08BAAFC369D2B64D"
-        "OwnerKey" = "8:_DDCC33C53253469FBF5C6536A9F2A239"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D64229ED855B7FFE08BAAFC369D2B64D"
-        "OwnerKey" = "8:_CD59C8AB5A0172E6E5D4F9907F758E4C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D76EFC88F7D9973249FC6A4C50EDF7B8"
-        "OwnerKey" = "8:_9337E63054394B369D999DA163837EAC"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -214,6 +214,18 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_DDCC33C53253469FBF5C6536A9F2A239"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_3788BF6C3F1C75FA5748ADD238F95CB8"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_9337E63054394B369D999DA163837EAC"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -250,37 +262,25 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D76EFC88F7D9973249FC6A4C50EDF7B8"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_4001D8577B447B4A492B4E4EEAE49EBA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_DDCC33C53253469FBF5C6536A9F2A239"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_CD59C8AB5A0172E6E5D4F9907F758E4C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_D64229ED855B7FFE08BAAFC369D2B64D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A980BC9B922BFAFC2B01ABDCA49543B8"
+        "OwnerKey" = "8:_26EF39A1AB6CFF5588C1EC4552092AF3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_5466C594EB502CE6FB0E6CF9ABA2F5A0"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_4001D8577B447B4A492B4E4EEAE49EBA"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -291,7 +291,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:Debug\\Proxy.Installer.msi"
+        "OutputFilename" = "8:Debug\\WS-DiscoveryProxy.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -308,6 +308,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
         "Release"
@@ -315,7 +328,7 @@
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:Release\\Proxy.Installer.msi"
+        "OutputFilename" = "8:Release\\WS-DiscoveryProxy.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -332,6 +345,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
     }
@@ -339,6 +365,62 @@
     {
         "CustomAction"
         {
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_5DD24AD890EA4065B4CA592E8A3C8C0F"
+            {
+            "Name" = "8:Primary output from Proxy.Service.Host (Active)"
+            "Condition" = "8:"
+            "Object" = "8:_9337E63054394B369D999DA163837EAC"
+            "FileType" = "3:2"
+            "InstallAction" = "3:2"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_5AFFE4BE_E95A_46DD_8C8E_62CB184FE3AB"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_745E264736E5493C8DBF9EC2B971A60B"
+            {
+            "Name" = "8:Primary output from Proxy.Service.Host (Active)"
+            "Condition" = "8:"
+            "Object" = "8:_9337E63054394B369D999DA163837EAC"
+            "FileType" = "3:2"
+            "InstallAction" = "3:1"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_84990EE1_A202_4EEB_B9FC_70C7442DD7AA"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_79B76E79F2FE4059A10282019713AB01"
+            {
+            "Name" = "8:Primary output from Proxy.Service.Host (Active)"
+            "Condition" = "8:"
+            "Object" = "8:_9337E63054394B369D999DA163837EAC"
+            "FileType" = "3:2"
+            "InstallAction" = "3:3"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_CAC36D98_D573_4524_879D_F7192E8D16AE"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_B0F70FCB304245A5B8FCB3F2062905B7"
+            {
+            "Name" = "8:Primary output from Proxy.Service.Host (Active)"
+            "Condition" = "8:"
+            "Object" = "8:_9337E63054394B369D999DA163837EAC"
+            "FileType" = "3:2"
+            "InstallAction" = "3:4"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_966EE185_DCFD_40B3_9443_86CAB755A583"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
         }
         "DefaultFeature"
         {
@@ -354,7 +436,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                "FrameworkVersion" = "8:.NETFramework,Version=v4.0"
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=131000"
                 }
@@ -424,6 +506,68 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_26EF39A1AB6CFF5588C1EC4552092AF3"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:WS-Discovery.Proxy, Version=0.9.1.20, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_26EF39A1AB6CFF5588C1EC4552092AF3"
+                    {
+                    "Name" = "8:WS-Discovery.Proxy.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:WS-Discovery.Proxy.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_F85AE04F0F3D44D3BC075B7031A650EC"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3788BF6C3F1C75FA5748ADD238F95CB8"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:System.Reactive.Providers, Version=1.1.11011.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_3788BF6C3F1C75FA5748ADD238F95CB8"
+                    {
+                    "Name" = "8:System.Reactive.Providers.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:System.Reactive.Providers.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_F85AE04F0F3D44D3BC075B7031A650EC"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4001D8577B447B4A492B4E4EEAE49EBA"
             {
             "AssemblyRegister" = "3:1"
@@ -438,6 +582,37 @@
                     }
                 }
             "SourcePath" = "8:System.Windows.Interactivity.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_F85AE04F0F3D44D3BC075B7031A650EC"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5466C594EB502CE6FB0E6CF9ABA2F5A0"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:WS-Discovery.Proxy.Base, Version=0.9.1.31, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_5466C594EB502CE6FB0E6CF9ABA2F5A0"
+                    {
+                    "Name" = "8:WS-Discovery.Proxy.Base.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:WS-Discovery.Proxy.Base.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_F85AE04F0F3D44D3BC075B7031A650EC"
@@ -517,68 +692,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A980BC9B922BFAFC2B01ABDCA49543B8"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:WS-Discovery.Proxy.Base, Version=0.9.1.26, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_A980BC9B922BFAFC2B01ABDCA49543B8"
-                    {
-                    "Name" = "8:WS-Discovery.Proxy.Base.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:WS-Discovery.Proxy.Base.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_F85AE04F0F3D44D3BC075B7031A650EC"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CD59C8AB5A0172E6E5D4F9907F758E4C"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Reactive.Providers, Version=1.1.11011.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_CD59C8AB5A0172E6E5D4F9907F758E4C"
-                    {
-                    "Name" = "8:System.Reactive.Providers.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:System.Reactive.Providers.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_F85AE04F0F3D44D3BC075B7031A650EC"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D22EE3495B5C8ADE493A36FA085B68A6"
             {
             "AssemblyRegister" = "3:1"
@@ -624,37 +737,6 @@
                     }
                 }
             "SourcePath" = "8:System.Reactive.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_F85AE04F0F3D44D3BC075B7031A650EC"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D76EFC88F7D9973249FC6A4C50EDF7B8"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:WS-Discovery.Proxy, Version=0.9.1.11, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_D76EFC88F7D9973249FC6A4C50EDF7B8"
-                    {
-                    "Name" = "8:WS-Discovery.Proxy.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:WS-Discovery.Proxy.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_F85AE04F0F3D44D3BC075B7031A650EC"
@@ -738,22 +820,22 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Proxy.Installer"
-        "ProductCode" = "8:{BFD8A2BD-3F90-4C08-A6CE-082EBAFC49DA}"
-        "PackageCode" = "8:{1A7A13FC-D32C-46D7-96D8-5101F9EF244E}"
+        "ProductName" = "8:Proxy"
+        "ProductCode" = "8:{88B68B03-5606-49FB-808A-E1B6BDA76843}"
+        "PackageCode" = "8:{9593202F-4A42-4E4A-BCA5-95B64CD03400}"
         "UpgradeCode" = "8:{43AD14D2-2942-4760-AA8E-167F4C9E442C}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
-        "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:Default Company Name"
+        "InstallAllUsers" = "11:TRUE"
+        "ProductVersion" = "8:0.9.1"
+        "Manufacturer" = "8:WS-Discovery"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:Proxy.Installer"
+        "Title" = "8:WS-Discovery Proxy"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:Default Company Name"
+        "ARPCONTACT" = "8:WS-Discovery"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
@@ -1261,7 +1343,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_9337E63054394B369D999DA163837EAC"
             {
-            "SourcePath" = "8:"
+            "SourcePath" = "8:..\\Proxy.Service.Host\\obj\\Release\\WS-Discovery.Proxy.Service.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_F85AE04F0F3D44D3BC075B7031A650EC"
@@ -1289,7 +1371,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_DDCC33C53253469FBF5C6536A9F2A239"
             {
-            "SourcePath" = "8:..\\Proxy.ResolveModule\\obj\\Debug\\Proxy.ResolveModule.dll"
+            "SourcePath" = "8:..\\Proxy.ResolveModule\\obj\\Release\\Proxy.ResolveModule.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_BC77031845FA4F9F80DFE34F142270D5"
@@ -1317,7 +1399,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E347EE8340F147A499D37DC05E0E30C2"
             {
-            "SourcePath" = "8:..\\Proxy.ProbeModule\\obj\\Debug\\Proxy.ProbeModule.dll"
+            "SourcePath" = "8:..\\Proxy.ProbeModule\\obj\\Release\\Proxy.ProbeModule.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_BC77031845FA4F9F80DFE34F142270D5"

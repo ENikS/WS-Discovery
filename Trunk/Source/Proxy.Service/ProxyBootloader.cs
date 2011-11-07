@@ -13,6 +13,7 @@ using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition;
 using System.Reactive.Subjects;
 using System.IO;
+using System.Configuration;
 
 namespace System.ServiceModel.Discovery
 {
@@ -83,10 +84,22 @@ namespace System.ServiceModel.Discovery
         protected virtual AggregateCatalog ConfigureAggregateCatalog()
         {
             AggregateCatalog catalog = new AggregateCatalog();
+            string path = ConfigurationManager.AppSettings[ContractName.Modules];
+
+            if (string.IsNullOrWhiteSpace(path))
+            { 
+                StringBuilder sbPath = new StringBuilder();
+                sbPath.Append(Path.GetDirectoryName(this.GetType().Assembly.Location));
+                sbPath.Append("\\");
+                sbPath.Append(ContractName.Modules);
+                path = sbPath.ToString();
+            }
 
             // Load Add-in modules from the directory
-            if (Directory.Exists(ContractName.Modules)) 
-                catalog.Catalogs.Add(new DirectoryCatalog(ContractName.Modules));
+            if (!Directory.Exists(path))
+                throw new InvalidDataException("Modules directory does not exist.");
+
+            catalog.Catalogs.Add(new DirectoryCatalog(path));
 
             // Add this assembly
             catalog.Catalogs.Add(new AssemblyCatalog(this.GetType().Assembly));

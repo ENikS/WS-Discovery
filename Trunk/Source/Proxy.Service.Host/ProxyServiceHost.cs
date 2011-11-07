@@ -35,12 +35,7 @@ namespace Proxy.Service.Host
         
         public ProxyServiceHost()
         {
-
             InitializeComponent();
-
-            _proxyServiceHost = new ServiceHost(typeof(ProxyService), 
-                                                new Uri(ConfigurationManager.AppSettings["BaseAddress"]  ?? 
-                                                        "http://localhost:8732/Design_Time_Addresses/DiscoveryProxyService/"));
         }
 
         #endregion
@@ -101,6 +96,10 @@ namespace Proxy.Service.Host
         {
             try
             {
+                Uri baseAddress = new Uri(ConfigurationManager.AppSettings["BaseAddress"] ??
+                                                            "http://localhost:8732/Design_Time_Addresses/DiscoveryProxyService/");
+
+                _proxyServiceHost = new ServiceHost(typeof(ProxyService), baseAddress);
                 _proxyServiceHost.Open();
             }
             catch (CommunicationException e)
@@ -126,6 +125,7 @@ namespace Proxy.Service.Host
         private void OnStopProxyService()
         {
             _proxyServiceHost.Close();
+            _proxyServiceHost = null;
         }
 
         #endregion

@@ -150,7 +150,7 @@ namespace Proxy.ProbeModule
                                      .ToObservable()                                                          // As Observable 
                                      .ObserveOn(Scheduler.NewThread)                                          // Asynchronously
                                      .TakeUntil(Observable.Return(XmlQualifiedName.Empty)                     // Take until...
-                                     .Delay(findRequestContext.Criteria.Duration))                            // ...until timeout
+                                         .Delay(findRequestContext.Criteria.Duration))                        // ...until timeout
                                      .Where(name => { return _dictionary.ContainsKey(name); })                // Select only contract names present in the dictionary
                                      .SelectMany(name => { return _dictionary[name].ToObservable(); })        // Endpoints implementing requested Contract name
                                      .Where(endpoint =>
@@ -184,7 +184,7 @@ namespace Proxy.ProbeModule
                            .ToObservable()                                                          // As Observable 
                            .ObserveOn(Scheduler.NewThread)                                          // Asynchronously
                            .TakeUntil(Observable.Return(XmlQualifiedName.Empty)                     // Take until...
-                           .Delay(criteria.Duration))                            // ...until timeout
+                               .Delay(criteria.Duration))                                           // ...until timeout
                            .Where(name => { return _dictionary.ContainsKey(name); })                // Select only contract names present in the dictionary
                            .SelectMany(name => { return _dictionary[name].ToObservable(); })        // Endpoints implementing requested Contract name
                            .Where(endpoint =>

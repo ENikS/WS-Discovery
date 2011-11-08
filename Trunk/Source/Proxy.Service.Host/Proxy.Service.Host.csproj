@@ -76,6 +76,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppConfig.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppConfig.designer.cs">
+      <DependentUpon>AppConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FairwallInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FairwallInstaller.Designer.cs">
+      <DependentUpon>FairwallInstaller.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>
     </Compile>

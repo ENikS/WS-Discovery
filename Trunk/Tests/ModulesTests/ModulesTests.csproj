@@ -70,7 +70,7 @@
     <ProjectReference Include="..\..\Source\Infrastructure\Proxy.Infrastructure.csproj">
       <Project>{37F8ADA9-1888-4D09-84B3-95A2E028A7B8}</Project>
       <Name>Proxy.Infrastructure</Name>
-      <Private>False</Private>
+      <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\..\Source\Proxy.ProbeModule\Proxy.ProbeModule.csproj">
       <Project>{0EEB0C8B-8CB4-4809-9C5B-6066CDED2C48}</Project>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel.Composition;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace System.ServiceModel.Discovery
 {
@@ -18,6 +19,6 @@ namespace System.ServiceModel.Discovery
         /// </summary>
         /// <param name="findRequestContext">Criteria for finding correct endpoints</param>
         /// <returns>Returns <see cref="Task<EndpointDiscoveryMetadata>"/> object which encapsulates request handler</returns>
-        Task<EndpointDiscoveryMetadata> Create(ResolveCriteria resolveCriteria);
+        Task<Collection<EndpointDiscoveryMetadata>> Create(ResolveCriteria resolveCriteria);
     }
 }

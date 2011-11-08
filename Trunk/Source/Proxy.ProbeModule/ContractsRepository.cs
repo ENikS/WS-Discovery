@@ -172,6 +172,40 @@ namespace Proxy.ProbeModule
                                      .ToTask();
         }
 
+        /// <summary>
+        /// Creates Task to handle Probe request
+        /// </summary>
+        /// <param name="criteria"><see cref="FindCriteria"/> for finding correct endpoints</param>
+        /// <returns>Returns <see cref="Task<IEnumerable<EndpointDiscoveryMetadata>>"/> object which encapsulates request handler</returns>
+        Task<Collection<EndpointDiscoveryMetadata>> IProbeTaskFactory.Create(FindCriteria criteria)
+        {
+            // Create Task containing Rx LINQ query 
+            return criteria.ContractTypeNames                                                       // Each requested contract name
+                           .ToObservable()                                                          // As Observable 
+                           .ObserveOn(Scheduler.NewThread)                                          // Asynchronously
+                           .TakeUntil(Observable.Return(XmlQualifiedName.Empty)                     // Take until...
+                           .Delay(criteria.Duration))                            // ...until timeout
+                           .Where(name => { return _dictionary.ContainsKey(name); })                // Select only contract names present in the dictionary
+                           .SelectMany(name => { return _dictionary[name].ToObservable(); })        // Endpoints implementing requested Contract name
+                           .Where(endpoint =>
+                           {
+                               return _scopesPredicate(endpoint.Scopes,                             // With matching scopes
+                                                       criteria.Scopes,
+                                                       criteria.ScopeMatchBy)
+
+                                   && _extensionsPredicate(endpoint.Extensions,                     // and matching extensions  
+                                                           criteria.Extensions);
+                           })
+                           .Take(criteria.MaxResults)                                               // Take requested number of results
+                           .Aggregate(new Collection<EndpointDiscoveryMetadata>(),
+                                   (context, endpoint) =>
+                                   {
+                                       context.Add(endpoint);                                       // Add matching endpoints
+                                       return context;
+                                   })
+                           .ToTask();
+        }
+
         #endregion
     }
 }

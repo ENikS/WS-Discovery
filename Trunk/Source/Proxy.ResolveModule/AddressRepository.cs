@@ -111,7 +111,7 @@ namespace Proxy.ResolveModule
                                                            return _extensionsPredicate(endpoint.Extensions,          // Match extensions  
                                                                                        resolveCriteria.Extensions);
                                                        })
-                                                       .Take(1)
+                                                       .Take(1)                                                      // TODO: Findout if more than one required
                                                        .Aggregate(new Collection<EndpointDiscoveryMetadata>(),
                                                                (context, endpoint) =>
                                                                {

@@ -198,7 +198,7 @@ namespace System.ServiceModel.Discovery
         /// <returns>Endpoint discovery metadata for the resolved service.</returns>
         protected override EndpointDiscoveryMetadata OnEndResolve(IAsyncResult result)
         {
-            return ((Task<EndpointDiscoveryMetadata>)result).Result;
+            return ((Task<Collection<EndpointDiscoveryMetadata>>)result).Result.FirstOrDefault();
         }
 
         #endregion
@@ -225,10 +225,10 @@ namespace System.ServiceModel.Discovery
         //
         // Returns:
         //     A reference to the pending asynchronous operation.
-        //protected override IAsyncResult BeginShouldRedirectFind(FindCriteria resolveCriteria, AsyncCallback callback, object state)
-        //{
-        //    return base.BeginShouldRedirectFind(resolveCriteria, callback, state);
-        //}
+        protected override IAsyncResult BeginShouldRedirectFind(FindCriteria resolveCriteria, AsyncCallback callback, object state)
+        {
+            return _findTaskFactory.Create(resolveCriteria).ToApm(callback, state);
+        }
 
         //
         // Summary:
@@ -245,10 +245,12 @@ namespace System.ServiceModel.Discovery
         //
         // Returns:
         //     true if the find operation should be redirected, otherwise false.
-        //protected override bool EndShouldRedirectFind(IAsyncResult result, out Collection<EndpointDiscoveryMetadata> redirectionEndpoints)
-        //{
-        //    return base.EndShouldRedirectFind(result, out redirectionEndpoints);
-        //}
+        protected override bool EndShouldRedirectFind(IAsyncResult result, out Collection<EndpointDiscoveryMetadata> redirectionEndpoints)
+        {
+            redirectionEndpoints = ((Task<Collection<EndpointDiscoveryMetadata>>)result).Result;
+
+            return (0 == redirectionEndpoints.Count) ? false : true;
+        }
 
         #endregion
 
@@ -275,10 +277,10 @@ namespace System.ServiceModel.Discovery
         //
         // Returns:
         //     A reference to the pending asynchronous operation.
-        //protected override IAsyncResult BeginShouldRedirectResolve(ResolveCriteria findCriteria, AsyncCallback callback, object state)
-        //{
-        //    return base.BeginShouldRedirectResolve(findCriteria, callback, state);
-        //}
+        protected override IAsyncResult BeginShouldRedirectResolve(ResolveCriteria findCriteria, AsyncCallback callback, object state)
+        {
+            return _resolveTaskFactory.Create(findCriteria).ToApm(callback, state);
+        }
 
         //
         // Summary:
@@ -295,10 +297,12 @@ namespace System.ServiceModel.Discovery
         //
         // Returns:
         //     true if the resolve operation should be redirected, otherwise false.
-        //protected override bool EndShouldRedirectResolve(IAsyncResult result, out Collection<EndpointDiscoveryMetadata> redirectionEndpoints)
-        //{
-        //    return base.EndShouldRedirectResolve(result, out redirectionEndpoints);
-        //}
+        protected override bool EndShouldRedirectResolve(IAsyncResult result, out Collection<EndpointDiscoveryMetadata> redirectionEndpoints)
+        {
+            redirectionEndpoints = ((Task<Collection<EndpointDiscoveryMetadata>>)result).Result;
+
+            return (0 == redirectionEndpoints.Count) ? false : true;
+        }
         
         #endregion
     }

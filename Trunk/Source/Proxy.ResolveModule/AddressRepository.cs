@@ -91,10 +91,15 @@ namespace Proxy.ResolveModule
         /// </summary>
         /// <param name="findRequestContext">Criteria for finding correct endpoints</param>
         /// <returns>Returns <see cref="Task<EndpointDiscoveryMetadata>"/> object which encapsulates request handler</returns>
-        Task<EndpointDiscoveryMetadata> IResolveTaskFactory.Create(ResolveCriteria resolveCriteria)
+        Task<Collection<EndpointDiscoveryMetadata>> IResolveTaskFactory.Create(ResolveCriteria resolveCriteria)
         {
             if (!_dictionary.ContainsKey(resolveCriteria.Address))
-                return Task<EndpointDiscoveryMetadata>.Factory.StartNew(() => { return null; });
+            { 
+                var source = new TaskCompletionSource<Collection<EndpointDiscoveryMetadata>>();
+                source.SetResult(new Collection<EndpointDiscoveryMetadata>());
+
+                return source.Task;
+            }
             
             // Create Task containing Rx LINQ query 
             return _dictionary[resolveCriteria.Address].ToObservable()                                               // As Observable 
@@ -107,6 +112,12 @@ namespace Proxy.ResolveModule
                                                                                        resolveCriteria.Extensions);
                                                        })
                                                        .Take(1)
+                                                       .Aggregate(new Collection<EndpointDiscoveryMetadata>(),
+                                                               (context, endpoint) =>
+                                                               {
+                                                                   context.Add(endpoint);                            // Add matching endpoints
+                                                                   return context;
+                                                               })
                                                        .ToTask();
         }
 

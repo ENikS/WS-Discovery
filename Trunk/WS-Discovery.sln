@@ -30,9 +30,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proxy.Service.Host", "Sourc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstallersTests", "Tests\InstallersTests\InstallersTests.csproj", "{754F0371-835D-4043-82B8-E5F3A495938E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{E896CFF2-6AE4-45B7-8668-39E837451104}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Source\Samples\Client\Client.csproj", "{0EC08A4D-65FF-4F85-A777-AB74944018A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Source\Samples\Service\Service.csproj", "{FB0F4BAA-DA42-4390-8508-0F0AD92DC6A1}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 10
+		SccNumberOfProjects = 12
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs07
 		SccLocalPath0 = .
@@ -68,6 +74,14 @@ Global
 		SccProjectTopLevelParentUniqueName9 = WS-Discovery.sln
 		SccProjectName9 = Tests/InstallersTests
 		SccLocalPath9 = Tests\\InstallersTests
+		SccProjectUniqueName10 = Source\\Samples\\Client\\Client.csproj
+		SccProjectTopLevelParentUniqueName10 = WS-Discovery.sln
+		SccProjectName10 = Source/Samples/Client
+		SccLocalPath10 = Source\\Samples\\Client
+		SccProjectUniqueName11 = Source\\Samples\\Service\\Service.csproj
+		SccProjectTopLevelParentUniqueName11 = WS-Discovery.sln
+		SccProjectName11 = Source/Samples/Service
+		SccLocalPath11 = Source\\Samples\\Service
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = WS-Discovery.vsmdi
@@ -166,6 +180,24 @@ Global
 		{754F0371-835D-4043-82B8-E5F3A495938E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{754F0371-835D-4043-82B8-E5F3A495938E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{754F0371-835D-4043-82B8-E5F3A495938E}.Release|x86.ActiveCfg = Release|Any CPU
+		{0EC08A4D-65FF-4F85-A777-AB74944018A7}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{0EC08A4D-65FF-4F85-A777-AB74944018A7}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{0EC08A4D-65FF-4F85-A777-AB74944018A7}.Debug|x86.ActiveCfg = Debug|x86
+		{0EC08A4D-65FF-4F85-A777-AB74944018A7}.Debug|x86.Build.0 = Debug|x86
+		{0EC08A4D-65FF-4F85-A777-AB74944018A7}.Release|Any CPU.ActiveCfg = Release|x86
+		{0EC08A4D-65FF-4F85-A777-AB74944018A7}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{0EC08A4D-65FF-4F85-A777-AB74944018A7}.Release|Mixed Platforms.Build.0 = Release|x86
+		{0EC08A4D-65FF-4F85-A777-AB74944018A7}.Release|x86.ActiveCfg = Release|x86
+		{0EC08A4D-65FF-4F85-A777-AB74944018A7}.Release|x86.Build.0 = Release|x86
+		{FB0F4BAA-DA42-4390-8508-0F0AD92DC6A1}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{FB0F4BAA-DA42-4390-8508-0F0AD92DC6A1}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{FB0F4BAA-DA42-4390-8508-0F0AD92DC6A1}.Debug|x86.ActiveCfg = Debug|x86
+		{FB0F4BAA-DA42-4390-8508-0F0AD92DC6A1}.Debug|x86.Build.0 = Debug|x86
+		{FB0F4BAA-DA42-4390-8508-0F0AD92DC6A1}.Release|Any CPU.ActiveCfg = Release|x86
+		{FB0F4BAA-DA42-4390-8508-0F0AD92DC6A1}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{FB0F4BAA-DA42-4390-8508-0F0AD92DC6A1}.Release|Mixed Platforms.Build.0 = Release|x86
+		{FB0F4BAA-DA42-4390-8508-0F0AD92DC6A1}.Release|x86.ActiveCfg = Release|x86
+		{FB0F4BAA-DA42-4390-8508-0F0AD92DC6A1}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -176,5 +208,7 @@ Global
 		{42A665E1-3ECD-4476-AD13-2EEC06992348} = {C1E149AC-9FE7-495C-B0BD-4EB75A4AF3FC}
 		{57D82912-569C-4F6A-A5AA-E03463A0AA49} = {C1E149AC-9FE7-495C-B0BD-4EB75A4AF3FC}
 		{754F0371-835D-4043-82B8-E5F3A495938E} = {C1E149AC-9FE7-495C-B0BD-4EB75A4AF3FC}
+		{0EC08A4D-65FF-4F85-A777-AB74944018A7} = {E896CFF2-6AE4-45B7-8668-39E837451104}
+		{FB0F4BAA-DA42-4390-8508-0F0AD92DC6A1} = {E896CFF2-6AE4-45B7-8668-39E837451104}
 	EndGlobalSection
 EndGlobal

@@ -1,6 +1,6 @@
-﻿namespace System.ServiceModel.Discovery.ProxyService.Host
+﻿namespace Proxy.Service.Host
 {
-    partial class ProjectInstaller
+    partial class ProxyServiceInstaller
     {
         /// <summary>
         /// Required designer variable.
@@ -54,7 +54,7 @@
 
         #endregion
 
-        private ServiceProcess.ServiceProcessInstaller ProxyProcessInstaller;
-        private ServiceProcess.ServiceInstaller ProxyServiceHostInstaller;
+        private System.ServiceProcess.ServiceProcessInstaller ProxyProcessInstaller;
+        private System.ServiceProcess.ServiceInstaller ProxyServiceHostInstaller;
     }
 }

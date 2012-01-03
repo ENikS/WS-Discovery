@@ -1,6 +1,6 @@
-﻿namespace Host.App.Config
+﻿namespace Proxy.Service.Host
 {
-    partial class AppConfig
+    partial class AppConfigInstaller
     {
         /// <summary>
         /// Required designer variable.

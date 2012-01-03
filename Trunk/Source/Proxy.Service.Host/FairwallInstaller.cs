@@ -6,7 +6,7 @@ using System.Configuration.Install;
 using System.Linq;
 
 
-namespace System.ServiceModel.Discovery.ProxyService.Host
+namespace Proxy.Service.Host
 {
     [RunInstaller(true)]
     public partial class FairwallInstaller : System.Configuration.Install.Installer

@@ -9,14 +9,14 @@ using System.ServiceModel.Configuration;
 using System.Diagnostics;
 
 
-namespace Host.App.Config
+namespace Proxy.Service.Host
 {
     [RunInstaller(true)]
-    public partial class AppConfig : System.Configuration.Install.Installer
+    public partial class AppConfigInstaller : System.Configuration.Install.Installer
     {
         private const string _multicast = "Multicast";
         
-        public AppConfig()
+        public AppConfigInstaller()
         {
             InitializeComponent();
         }

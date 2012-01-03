@@ -39,22 +39,22 @@ namespace Proxy.Service.Host
         {
             base.Commit(savedState);
 
-            Configuration config = ConfigurationManager.OpenExeConfiguration(this.GetType().Assembly.Location);
+            //Configuration config = ConfigurationManager.OpenExeConfiguration(this.GetType().Assembly.Location);
 
-            ConfigurationSectionGroup serviceModelGroup = config.SectionGroups["system.serviceModel"];
-            ConfigurationSection serviceSection = serviceModelGroup.Sections["services"];
-            ServiceElement proxyService = (serviceSection as ServicesSection).Services["System.ServiceModel.Discovery.ProxyService"];
+            //ConfigurationSectionGroup serviceModelGroup = config.SectionGroups["system.serviceModel"];
+            //ConfigurationSection serviceSection = serviceModelGroup.Sections["services"];
+            //ServiceElement proxyService = (serviceSection as ServicesSection).Services["System.ServiceModel.Discovery.ProxyService"];
 
-            // Add Endpoints
-            proxyService.Endpoints.Add(new ServiceEndpointElement() { Name = "UdpMulticastEndpoint", IsSystemEndpoint = false, Kind = "udpAnnouncementEndpoint" });
+            //// Add Endpoints
+            //proxyService.Endpoints.Add(new ServiceEndpointElement() { Name = "UdpMulticastEndpoint", IsSystemEndpoint = false, Kind = "udpAnnouncementEndpoint" });
 
-            Debug.WriteLine("Section Groups : ");
-            foreach (var service in (serviceSection as ServicesSection).Services)
-            {
-                Debug.WriteLine(service);
-            }
+            //Debug.WriteLine("Section Groups : ");
+            //foreach (var service in (serviceSection as ServicesSection).Services)
+            //{
+            //    Debug.WriteLine(service);
+            //}
 
-            config.Save();
+            //config.Save();
         }
 
         public override void Rollback(IDictionary savedState)

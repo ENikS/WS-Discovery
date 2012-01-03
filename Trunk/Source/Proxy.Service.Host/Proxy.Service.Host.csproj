@@ -81,11 +81,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppConfig.cs">
+    <Compile Include="AppConfigInstaller.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="AppConfig.designer.cs">
-      <DependentUpon>AppConfig.cs</DependentUpon>
+    <Compile Include="AppConfigInstaller.designer.cs">
+      <DependentUpon>AppConfigInstaller.cs</DependentUpon>
     </Compile>
     <Compile Include="FairwallInstaller.cs">
       <SubType>Component</SubType>
@@ -93,11 +93,11 @@
     <Compile Include="FairwallInstaller.Designer.cs">
       <DependentUpon>FairwallInstaller.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProjectInstaller.cs">
+    <Compile Include="ProxyServiceInstaller.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ProjectInstaller.Designer.cs">
-      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    <Compile Include="ProxyServiceInstaller.Designer.cs">
+      <DependentUpon>ProxyServiceInstaller.cs</DependentUpon>
     </Compile>
     <Compile Include="ProxyServiceHost.cs">
       <SubType>Component</SubType>
@@ -109,8 +109,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ProjectInstaller.resx">
-      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    <EmbeddedResource Include="ProxyServiceInstaller.resx">
+      <DependentUpon>ProxyServiceInstaller.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProxyServiceHost.resx">
       <DependentUpon>ProxyServiceHost.cs</DependentUpon>
@@ -131,7 +131,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_BuildVersioningStyle="None.None.None.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_StartDate="2011/11/3" />
+      <UserProperties BuildVersion_StartDate="2011/11/3" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.None.Increment" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

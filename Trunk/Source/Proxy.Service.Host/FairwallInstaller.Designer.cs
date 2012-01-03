@@ -1,4 +1,4 @@
-﻿namespace System.ServiceModel.Discovery.ProxyService.Host
+﻿namespace Proxy.Service.Host
 {
     partial class FairwallInstaller
     {

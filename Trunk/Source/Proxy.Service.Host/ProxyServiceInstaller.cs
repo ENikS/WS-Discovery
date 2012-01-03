@@ -6,12 +6,12 @@ using System.Configuration.Install;
 using System.Linq;
 
 
-namespace System.ServiceModel.Discovery.ProxyService.Host
+namespace Proxy.Service.Host
 {
     [RunInstaller(true)]
-    public partial class ProjectInstaller : System.Configuration.Install.Installer
+    public partial class ProxyServiceInstaller : System.Configuration.Install.Installer
     {
-        public ProjectInstaller()
+        public ProxyServiceInstaller()
         {
             InitializeComponent();
         }

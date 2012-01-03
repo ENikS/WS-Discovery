@@ -29,6 +29,40 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proxy.Service.Host", "Source\Proxy.Service.Host\Proxy.Service.Host.csproj", "{29C4475D-ABB4-4D0D-977F-2E0871FB9E5F}"
 EndProject
 Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 9
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs07
+		SccProjectUniqueName0 = Source\\Infrastructure\\Proxy.Infrastructure.csproj
+		SccProjectName0 = Source/Infrastructure
+		SccLocalPath0 = Source\\Infrastructure
+		SccProjectUniqueName1 = Source\\Proxy.Service\\Proxy.Service.csproj
+		SccProjectName1 = Source/Proxy.Service
+		SccLocalPath1 = Source\\Proxy.Service
+		SccProjectUniqueName2 = Source\\Proxy.ProbeModule\\Proxy.ProbeModule.csproj
+		SccProjectTopLevelParentUniqueName2 = WS-Discovery.sln
+		SccProjectName2 = Source/Proxy.ProbeModule
+		SccLocalPath2 = Source\\Proxy.ProbeModule
+		SccProjectUniqueName3 = Source\\Proxy.ResolveModule\\Proxy.ResolveModule.csproj
+		SccProjectTopLevelParentUniqueName3 = WS-Discovery.sln
+		SccProjectName3 = Source/Proxy.ResolveModule
+		SccLocalPath3 = Source\\Proxy.ResolveModule
+		SccLocalPath4 = .
+		SccProjectUniqueName5 = Tests\\UnitTests\\UnitTests.csproj
+		SccProjectTopLevelParentUniqueName5 = WS-Discovery.sln
+		SccProjectName5 = Tests/UnitTests
+		SccLocalPath5 = Tests\\UnitTests
+		SccProjectUniqueName6 = Source\\Proxy.Installer\\Proxy.Installer.vdproj
+		SccProjectName6 = Source/Proxy.Installer
+		SccLocalPath6 = Source\\Proxy.Installer
+		SccProjectUniqueName7 = Tests\\ModulesTests\\ModulesTests.csproj
+		SccProjectTopLevelParentUniqueName7 = WS-Discovery.sln
+		SccProjectName7 = Tests/ModulesTests
+		SccLocalPath7 = Tests\\ModulesTests
+		SccProjectUniqueName8 = Source\\Proxy.Service.Host\\Proxy.Service.Host.csproj
+		SccProjectName8 = Source/Proxy.Service.Host
+		SccLocalPath8 = Source\\Proxy.Service.Host
+	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = WS-Discovery.vsmdi
 	EndGlobalSection

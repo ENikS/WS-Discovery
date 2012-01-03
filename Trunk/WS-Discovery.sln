@@ -28,26 +28,28 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModulesTests", "Tests\Modul
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proxy.Service.Host", "Source\Proxy.Service.Host\Proxy.Service.Host.csproj", "{29C4475D-ABB4-4D0D-977F-2E0871FB9E5F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstallersTests", "Tests\InstallersTests\InstallersTests.csproj", "{754F0371-835D-4043-82B8-E5F3A495938E}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 9
+		SccNumberOfProjects = 10
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs07
-		SccProjectUniqueName0 = Source\\Infrastructure\\Proxy.Infrastructure.csproj
-		SccProjectName0 = Source/Infrastructure
-		SccLocalPath0 = Source\\Infrastructure
-		SccProjectUniqueName1 = Source\\Proxy.Service\\Proxy.Service.csproj
-		SccProjectName1 = Source/Proxy.Service
-		SccLocalPath1 = Source\\Proxy.Service
-		SccProjectUniqueName2 = Source\\Proxy.ProbeModule\\Proxy.ProbeModule.csproj
-		SccProjectTopLevelParentUniqueName2 = WS-Discovery.sln
-		SccProjectName2 = Source/Proxy.ProbeModule
-		SccLocalPath2 = Source\\Proxy.ProbeModule
-		SccProjectUniqueName3 = Source\\Proxy.ResolveModule\\Proxy.ResolveModule.csproj
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Source\\Infrastructure\\Proxy.Infrastructure.csproj
+		SccProjectName1 = Source/Infrastructure
+		SccLocalPath1 = Source\\Infrastructure
+		SccProjectUniqueName2 = Source\\Proxy.Service\\Proxy.Service.csproj
+		SccProjectName2 = Source/Proxy.Service
+		SccLocalPath2 = Source\\Proxy.Service
+		SccProjectUniqueName3 = Source\\Proxy.ProbeModule\\Proxy.ProbeModule.csproj
 		SccProjectTopLevelParentUniqueName3 = WS-Discovery.sln
-		SccProjectName3 = Source/Proxy.ResolveModule
-		SccLocalPath3 = Source\\Proxy.ResolveModule
-		SccLocalPath4 = .
+		SccProjectName3 = Source/Proxy.ProbeModule
+		SccLocalPath3 = Source\\Proxy.ProbeModule
+		SccProjectUniqueName4 = Source\\Proxy.ResolveModule\\Proxy.ResolveModule.csproj
+		SccProjectTopLevelParentUniqueName4 = WS-Discovery.sln
+		SccProjectName4 = Source/Proxy.ResolveModule
+		SccLocalPath4 = Source\\Proxy.ResolveModule
 		SccProjectUniqueName5 = Tests\\UnitTests\\UnitTests.csproj
 		SccProjectTopLevelParentUniqueName5 = WS-Discovery.sln
 		SccProjectName5 = Tests/UnitTests
@@ -62,6 +64,10 @@ Global
 		SccProjectUniqueName8 = Source\\Proxy.Service.Host\\Proxy.Service.Host.csproj
 		SccProjectName8 = Source/Proxy.Service.Host
 		SccLocalPath8 = Source\\Proxy.Service.Host
+		SccProjectUniqueName9 = Tests\\InstallersTests\\InstallersTests.csproj
+		SccProjectTopLevelParentUniqueName9 = WS-Discovery.sln
+		SccProjectName9 = Tests/InstallersTests
+		SccLocalPath9 = Tests\\InstallersTests
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = WS-Discovery.vsmdi
@@ -150,6 +156,16 @@ Global
 		{29C4475D-ABB4-4D0D-977F-2E0871FB9E5F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{29C4475D-ABB4-4D0D-977F-2E0871FB9E5F}.Release|x86.ActiveCfg = Release|x86
 		{29C4475D-ABB4-4D0D-977F-2E0871FB9E5F}.Release|x86.Build.0 = Release|x86
+		{754F0371-835D-4043-82B8-E5F3A495938E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{754F0371-835D-4043-82B8-E5F3A495938E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{754F0371-835D-4043-82B8-E5F3A495938E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{754F0371-835D-4043-82B8-E5F3A495938E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{754F0371-835D-4043-82B8-E5F3A495938E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{754F0371-835D-4043-82B8-E5F3A495938E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{754F0371-835D-4043-82B8-E5F3A495938E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{754F0371-835D-4043-82B8-E5F3A495938E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{754F0371-835D-4043-82B8-E5F3A495938E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{754F0371-835D-4043-82B8-E5F3A495938E}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -159,5 +175,6 @@ Global
 		{8CE9FBD5-9CCB-487F-B9DF-A912C68107CA} = {F43EB91B-8430-4052-8172-379ED15DD44D}
 		{42A665E1-3ECD-4476-AD13-2EEC06992348} = {C1E149AC-9FE7-495C-B0BD-4EB75A4AF3FC}
 		{57D82912-569C-4F6A-A5AA-E03463A0AA49} = {C1E149AC-9FE7-495C-B0BD-4EB75A4AF3FC}
+		{754F0371-835D-4043-82B8-E5F3A495938E} = {C1E149AC-9FE7-495C-B0BD-4EB75A4AF3FC}
 	EndGlobalSection
 EndGlobal
